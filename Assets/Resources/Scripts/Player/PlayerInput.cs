@@ -14,16 +14,22 @@ public class PlayerInput : MonoBehaviour
     {
         get { return moveY; }
     }
-    private Vector2 mousePosition = Vector2.zero;
-    public Vector2 MousePosition
+    private float mouseX = 0f;
+    public float MouseX
     {
-        get { return mousePosition; }
+        get { return mouseX; }
+    }
+    private float horizontalAngle = 0f;
+    public float HorizontalAngle
+    {
+        get { return horizontalAngle; }
     }
     void Update()
     {
         moveX = Input.GetAxis("Horizontal");
         moveY = Input.GetAxis("Vertical");
 
-        mousePosition = Input.mousePosition;
+        mouseX = Input.GetAxis("Mouse X");
+        horizontalAngle += mouseX;
     }
 }

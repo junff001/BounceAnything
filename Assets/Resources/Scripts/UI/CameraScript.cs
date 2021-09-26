@@ -7,7 +7,7 @@ public class CameraScript : MonoBehaviour
     [SerializeField]
     private Transform playerTrm = null;
     [SerializeField]
-    private float camearaRange = 5f;
+    private float cameraRange = 5f;
 
     void Start()
     {
@@ -15,7 +15,8 @@ public class CameraScript : MonoBehaviour
     }
     void Update()
     {
-        Vector3 cameraPos = new Vector3(playerTrm.position.x, camearaRange, playerTrm.position.z - camearaRange);
+        Debug.Log(playerTrm.forward);
+        Vector3 cameraPos = new Vector3(playerTrm.position.x * playerTrm.forward.x, cameraRange, playerTrm.position.z - cameraRange);
         transform.position = cameraPos;
 
         transform.LookAt(playerTrm);

@@ -24,9 +24,7 @@ public class BounceScript : MonoBehaviour
     {
         rigid.velocity = new Vector3(plyaerInput.MoveX * moveSpeed, rigid.velocity.y, plyaerInput.MoveY * moveSpeed);
 
-        Debug.Log(plyaerInput.MousePosition.x);
-
-        rigid.rotation = Quaternion.Euler(rigid.rotation.x, plyaerInput.MousePosition.x, rigid.rotation.z);
+        rigid.rotation = Quaternion.Euler(rigid.rotation.x, plyaerInput.MouseX, rigid.rotation.z);
     }
     private void OnCollisionEnter(Collision other)
     {
