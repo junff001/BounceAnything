@@ -10,6 +10,9 @@ public class BounceScript : MonoBehaviour
     [SerializeField]
     private LayerMask whatIsGround;
 
+    private Vector3 currentPosition = Vector3.zero;
+
+
     [SerializeField]
     private float jumpPower = 5f;
     [SerializeField]
@@ -22,9 +25,13 @@ public class BounceScript : MonoBehaviour
     }
     void Update()
     {
-        rigid.velocity = new Vector3(plyaerInput.MoveX * moveSpeed, rigid.velocity.y, plyaerInput.MoveY * moveSpeed);
+        currentPosition = transform.position;
 
-        rigid.rotation = Quaternion.Euler(rigid.rotation.x, plyaerInput.MouseX, rigid.rotation.z);
+        currentPosition += (new Vector3(-(plyaerInput.MoveX * moveSpeed), 0f, plyaerInput.MoveY * moveSpeed) + transform.forward) * Time.deltaTime;
+
+        rigid.rotation = Quaternion.Euler(rigid.rotation.x, plyaerInput.MousePos.x, rigid.rotation.z);
+
+        transform.position = currentPosition;
     }
     private void OnCollisionEnter(Collision other)
     {

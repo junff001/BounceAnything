@@ -15,8 +15,9 @@ public class CameraScript : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(playerTrm.forward);
-        Vector3 cameraPos = new Vector3(playerTrm.position.x * playerTrm.forward.x, cameraRange, playerTrm.position.z - cameraRange);
+        // Debug.Log(playerTrm.forward);
+        // Debug.DrawLine(playerTrm.position, playerTrm.forward + playerTrm.position, Color.red, 5f);
+        Vector3 cameraPos = new Vector3(playerTrm.position.x - playerTrm.forward.x * cameraRange, cameraRange, playerTrm.position.z - playerTrm.forward.z * cameraRange);
         transform.position = cameraPos;
 
         transform.LookAt(playerTrm);
