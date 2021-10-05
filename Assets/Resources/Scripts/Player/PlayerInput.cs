@@ -10,7 +10,7 @@ public class PlayerInput : MonoBehaviour
         get { return moveX; }
     }
     private float moveY = 0f;
-    public float MoveY
+    public float MoveZ
     {
         get { return moveY; }
     }
