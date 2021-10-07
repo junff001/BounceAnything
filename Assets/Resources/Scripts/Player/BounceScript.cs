@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BounceScript : MonoBehaviour
 {
+    private GameManager gameManager = null;
     private PlayerInput playerInput = null;
     private Rigidbody rigid = null;
 
@@ -23,6 +24,8 @@ public class BounceScript : MonoBehaviour
 
     void Start()
     {
+        gameManager = GameManager.Instance;
+
         playerInput = GetComponent<PlayerInput>();
 
         rigid = GetComponent<Rigidbody>();
@@ -34,7 +37,7 @@ public class BounceScript : MonoBehaviour
 
         currentPosition += Camera.main.transform.forward * moveSpeed * Time.deltaTime;
 
-        rigid.rotation = Quaternion.Euler((totalTime * Mathf.Rad2Deg), playerInput.MousePos.x, rigid.rotation.z);
+        rigid.rotation = Quaternion.Euler((totalTime * Mathf.Rad2Deg), playerInput.MousePos.x, rigid.rotation.z);///////
 
         transform.position = currentPosition;
     }
@@ -44,10 +47,8 @@ public class BounceScript : MonoBehaviour
     {
         if (whatIsJumpable == (whatIsJumpable | 1 << other.gameObject.layer))
         {
-            Debug.Log("aaaaaaaaaa");
             rigid.velocity = Vector3.zero;
-            rigid.AddForce((new Vector3(0f, transform.position.y, 0f) + Vector3.up) * jumpSpeed, ForceMode.Impulse);
-            
+            rigid.AddForce((new Vector3(0f, transform.position.y, 0f) + Vector3.up) * jumpSpeed, ForceMode.Impulse);   
         }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class GlueableObj : MonoBehaviour
 {
     private Collider myCol = null;
-    public double size { get; private set; }
+    public float size { get; private set; }
 
     void Start()
     {
