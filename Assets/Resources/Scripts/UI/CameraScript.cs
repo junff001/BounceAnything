@@ -20,7 +20,7 @@ public class CameraScript : MonoBehaviour
     {
         transform.rotation = Quaternion.Euler(transform.rotation.x, playerInput.MousePos.x, transform.rotation.z);
 
-        Vector3 cameraPos = new Vector3(playerTrm.position.x - transform.forward.x * cameraRange, cameraHeight, playerTrm.position.z - transform.forward.z * cameraRange);
+        Vector3 cameraPos = new Vector3(playerTrm.position.x - transform.forward.x * cameraRange, playerTrm.position.y + cameraHeight, playerTrm.position.z - transform.forward.z * cameraRange);
         transform.position = cameraPos;
 
         transform.LookAt(playerTrm);
