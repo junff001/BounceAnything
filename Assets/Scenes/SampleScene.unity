@@ -155,7 +155,7 @@ Transform:
   m_LocalScale: {x: 3, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &40322383
 BoxCollider:
@@ -479,6 +479,9 @@ MonoBehaviour:
   whatIsPlayerFirstObj:
     serializedVersion: 2
     m_Bits: 8
+  whatIsGlueableObj:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!4 &404939536
 Transform:
   m_ObjectHideFlags: 0
@@ -1027,7 +1030,7 @@ GameObject:
   - component: {fileID: 995295770}
   m_Layer: 3
   m_Name: Playerobjs
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1106,7 +1109,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &995295766
 MonoBehaviour:
@@ -1122,7 +1125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatIsJumpable:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 64
   jumpSpeed: 3
   moveSpeed: 5
   rotationSpeed: 3

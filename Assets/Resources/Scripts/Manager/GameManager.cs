@@ -30,6 +30,12 @@ public class GameManager : MonoBehaviour
     {
         get { return whatIsPlayerFirstObj; }
     }
+    [SerializeField]
+    private LayerMask whatIsGlueableObj;
+    public LayerMask WhatIsGlueableObj
+    {
+        get{return whatIsGlueableObj;}
+    }
 
     private PlayerFirstObjScript playerFirstObjScript = null;
     public PlayerFirstObjScript PlayerFirstObjScript
@@ -45,7 +51,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-
+        
     }
     void Update()
     {
