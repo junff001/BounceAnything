@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     private PlayerInput playerInput = null;
+    private PlayerFirstObjScript playerFirstObjScript = null;
     [SerializeField]
     private Transform playerTrm = null;
     [SerializeField]
@@ -15,12 +16,13 @@ public class CameraScript : MonoBehaviour
     void Start()
     {
         playerInput = FindObjectOfType<PlayerInput>();
+        playerFirstObjScript = FindObjectOfType<PlayerFirstObjScript>();
     }
     void Update()
     {
         transform.rotation = Quaternion.Euler(transform.rotation.x, playerInput.MousePos.x, transform.rotation.z);
 
-        Vector3 cameraPos = new Vector3(playerTrm.position.x - transform.forward.x * cameraRange, cameraHeight, playerTrm.position.z - transform.forward.z * cameraRange);
+        Vector3 cameraPos = new Vector3(playerTrm.position.x - transform.forward.x * cameraRange, playerTrm.position.y + cameraHeight + playerFirstObjScript.PlayerTotalSize, playerTrm.position.z - transform.forward.z * cameraRange);
         transform.position = cameraPos;
 
         transform.LookAt(playerTrm);
