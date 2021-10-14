@@ -33,8 +33,6 @@ public class GlueToPlayerFirstObj : MonoBehaviour
 
         myCol.isTrigger = true;
 
-
-
         originPos = transform.position;
     }
 
