@@ -9,6 +9,13 @@ public class CameraScript : MonoBehaviour
     [SerializeField]
     private Transform playerTrm = null;
     [SerializeField]
+    private Vector3 offset = Vector3.zero;
+
+    [SerializeField]
+    private float maxY = 45f;
+    [SerializeField]
+    private float minY = 10f;
+    [SerializeField]
     private float cameraRange = 5f; 
     [SerializeField]
     private float cameraHeight = 10f;
@@ -20,11 +27,16 @@ public class CameraScript : MonoBehaviour
     }
     void Update()
     {
-        transform.rotation = Quaternion.Euler(transform.rotation.x, playerInput.MousePos.x, transform.rotation.z);
 
-        Vector3 cameraPos = new Vector3(playerTrm.position.x - transform.forward.x * cameraRange, playerTrm.position.y + cameraHeight + playerFirstObjScript.PlayerTotalSize, playerTrm.position.z - transform.forward.z * cameraRange);
+        Vector3 cameraPos = new Vector3(playerTrm.position.x - transform.forward.x * cameraRange, playerTrm.position.y, playerTrm.position.z - transform.forward.z * cameraRange);
         transform.position = cameraPos;
 
-        transform.LookAt(playerTrm);
+        float angleY = (playerInput.MousePos.x / (Mathf.PI * 2));
+        float angleXZ = (playerInput.MousePos.y / (Mathf.PI * 2));
+
+        angleXZ = Mathf.Clamp(angleXZ, minY, maxY);
+
+        transform.position += Quaternion.Euler(angleXZ, angleY, angleXZ) * new Vector3(offset.x, offset.y, - cameraHeight - playerFirstObjScript.PlayerTotalSize);
+        transform.LookAt(playerTrm.transform);        
     }
 }
