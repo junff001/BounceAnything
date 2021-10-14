@@ -19,7 +19,7 @@ public class BounceScript : MonoBehaviour
     private float moveSpeed = 2f;
     [SerializeField]
     private float rotationSpeed = 3f;
-
+   
     private float totalTime = 0f;
 
     void Start()
@@ -33,11 +33,12 @@ public class BounceScript : MonoBehaviour
     void Update()
     {
         totalTime += Time.deltaTime * rotationSpeed;
+
         currentPosition = transform.position;
 
-        currentPosition += Camera.main.transform.forward * moveSpeed * Time.deltaTime;
+        currentPosition += Camera.main.transform.forward * moveSpeed * Time.deltaTime; 
 
-        rigid.rotation = Quaternion.Euler((totalTime * Mathf.Rad2Deg), playerInput.MousePos.x, rigid.rotation.z);///////
+        rigid.rotation = Quaternion.Euler((totalTime * Mathf.Rad2Deg), playerInput.MousePos.x, rigid.rotation.z);
 
         transform.position = currentPosition;
     }

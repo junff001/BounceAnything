@@ -9,8 +9,23 @@ public class PlayerInput : MonoBehaviour
     {
         get { return mousePos; }
     }
+
+    private float xMove;
+    public float XMove
+    {
+        get { return xMove; }
+    }
+
+    private float zMove;
+    public float ZMove
+    {
+        get { return zMove; }
+    }
+
     void Update()
     {
         mousePos = Input.mousePosition;
+        xMove = Input.GetAxis("Vertical");
+        zMove = Input.GetAxis("Horizontal");
     }
 }
