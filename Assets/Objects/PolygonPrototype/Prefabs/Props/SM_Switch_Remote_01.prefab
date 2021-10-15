@@ -94,7 +94,6 @@ GameObject:
   - component: {fileID: 23350250916280506}
   - component: {fileID: 64849772017051576}
   - component: {fileID: -7656517825345532782}
-  - component: {fileID: -7550642465578159098}
   m_Layer: 7
   m_Name: SM_Switch_Remote_01
   m_TagString: Untagged
@@ -192,17 +191,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2518eceb45585304aa0d7119cb81564a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &-7550642465578159098
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1716866361802238}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 38a252d86312a544095accfca06575c2, type: 3}
+  socreUp: 0

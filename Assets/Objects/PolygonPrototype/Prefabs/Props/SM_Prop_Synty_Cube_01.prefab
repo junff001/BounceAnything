@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 23924409287832830}
   - component: {fileID: 64570789176368776}
   - component: {fileID: 4358345855393704492}
-  - component: {fileID: -1717919136805054088}
   m_Layer: 7
   m_Name: SM_Prop_Synty_Cube_01
   m_TagString: Untagged
@@ -110,17 +109,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2518eceb45585304aa0d7119cb81564a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &-1717919136805054088
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1529207471264370}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 6cfe01e70a444224f8eb725e2b22452d, type: 3}
+  socreUp: 0
