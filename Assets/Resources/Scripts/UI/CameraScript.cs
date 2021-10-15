@@ -21,6 +21,7 @@ public class CameraScript : MonoBehaviour
     private float cameraRange = 5f;
     [SerializeField]
     private float cameraHeight = 10f;
+
     private void Awake()
     {
         gameManager = GameManager.Instance;

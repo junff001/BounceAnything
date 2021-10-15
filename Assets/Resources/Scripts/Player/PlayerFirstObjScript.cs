@@ -16,6 +16,12 @@ public class PlayerFirstObjScript : MonoBehaviour
             gameManager.Score = playerTotalSize * 100f;
         }
     }
+    private float plusTotalSize = 0f;
+    public float PlusPlayerTotalSize
+    {
+        get { return plusTotalSize; }
+        set { plusTotalSize = value; }
+    }
     void Start()
     {
         gameManager = GameManager.Instance;
@@ -26,9 +32,9 @@ public class PlayerFirstObjScript : MonoBehaviour
         gameManager.PlayerFirstObjScript = this;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-
+        SetPlayerTotalSize();
     }
     private void OnCollisionExit(Collision other)
     {
@@ -41,6 +47,24 @@ public class PlayerFirstObjScript : MonoBehaviour
                 glueableObj.gameObject.AddComponent<GlueToPlayerFirstObj>();
                 glueableObj.socreUp = true;
             }
+        }
+    }
+    private void SetPlayerTotalSize()
+    {
+        if(plusTotalSize > 0f)
+        {
+            playerTotalSize += Time.fixedDeltaTime;
+            playerTotalSize -= Time.fixedDeltaTime;
+
+            if(plusTotalSize < 0f)
+            {
+                playerTotalSize -= plusTotalSize;
+                plusTotalSize = 0f;
+            }
+        }
+        else
+        {
+            plusTotalSize = 0f;
         }
     }
 }

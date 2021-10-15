@@ -15,11 +15,14 @@ public class GlueableObj : MonoBehaviour
     private void Awake() 
     {
         gameManager = GameManager.Instance;
+        myCol = GetComponent<Collider>();
 
         transform.SetParent(gameManager.GlueableObjParent);
 
         originPos = transform.position;
         originRotate = transform.rotation;
+        
+        size = myCol.bounds.extents.x * myCol.bounds.extents.y * myCol.bounds.extents.z;
 
         gameManager.RestartGame += () =>
         {
@@ -32,8 +35,6 @@ public class GlueableObj : MonoBehaviour
     }
     void Start()
     {
-        myCol = GetComponent<Collider>();
 
-        size = myCol.bounds.extents.x * myCol.bounds.extents.y * myCol.bounds.extents.z;
     }
 }
