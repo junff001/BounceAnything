@@ -10,7 +10,11 @@ public class PlayerFirstObjScript : MonoBehaviour
     public float PlayerTotalSize
     {
         get { return playerTotalSize; }
-        set { playerTotalSize = value; }
+        set
+        {
+            playerTotalSize = value;
+            gameManager.Score = playerTotalSize * 100f;
+        }
     }
     void Start()
     {
@@ -30,11 +34,12 @@ public class PlayerFirstObjScript : MonoBehaviour
     {
         GlueableObj glueableObj = other.transform.GetComponent<GlueableObj>();
 
-        if (glueableObj != null)
+        if (glueableObj != null && !glueableObj.socreUp)
         {
             if (playerTotalSize >= glueableObj.size)
             {
                 glueableObj.gameObject.AddComponent<GlueToPlayerFirstObj>();
+                glueableObj.socreUp = true;
             }
         }
     }

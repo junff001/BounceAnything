@@ -52,8 +52,23 @@ public class BallController : MonoBehaviour
             rigid.AddForce(0, jumpHeight, 0, ForceMode.Impulse);
             isGround = false;
         }
-        Debug.Log(playerInput.ZMove);
-        rigid.AddForce(new Vector3(playerInput.XMove, 0, playerInput.ZMove) * moveSpeed); //Ball 이동 관련
+
+        if (playerInput.XMove > 0)  //Ball 이동 관련
+        {
+            rigid.AddForce(Camera.main.gameObject.transform.forward * moveSpeed, ForceMode.Impulse);
+        }
+        else if (playerInput.XMove < 0)
+        {
+            rigid.AddForce(-Camera.main.gameObject.transform.forward * moveSpeed, ForceMode.Impulse);
+        }
+        if (playerInput.ZMove > 0)
+        {
+            rigid.AddForce(Camera.main.gameObject.transform.right * moveSpeed, ForceMode.Impulse);
+        }
+        else if (playerInput.ZMove < 0)
+        {
+            rigid.AddForce(-Camera.main.gameObject.transform.right * moveSpeed, ForceMode.Impulse);
+        }
     }
 }
 
