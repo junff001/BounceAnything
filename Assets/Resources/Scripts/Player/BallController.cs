@@ -24,7 +24,7 @@ public class BallController : MonoBehaviour
         gameManager = GameManager.Instance;
         playerInput = GetComponent<PlayerInput>();
         rigid = GetComponent<Rigidbody>();
-        isGround = true;
+        //isGround = false;
     }
 
     void FixedUpdate()
@@ -37,11 +37,18 @@ public class BallController : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision) // OnCollisionEnter에서 OnCollisionStay로 바꿔봄
     {
         if (collision.collider.CompareTag("Ground"))
         {
             isGround = true;
+        }   
+    }
+    private void OnCollisionExit(Collision collision) // OnCollisionExit때 isGround = false 되도록 수정해봄
+    {
+        if (collision.collider.CompareTag("Ground"))
+        {
+            isGround = false;
         }
     }
 
@@ -50,24 +57,23 @@ public class BallController : MonoBehaviour
         if (isGround) //Ball 점프 관련
         {
             rigid.AddForce(0, jumpHeight, 0, ForceMode.Impulse);
-            isGround = false;
-        }
-
-        if (playerInput.XMove > 0)  //Ball 이동 관련
-        {
-            rigid.AddForce(Camera.main.gameObject.transform.forward * moveSpeed, ForceMode.Impulse);
-        }
-        else if (playerInput.XMove < 0)
-        {
-            rigid.AddForce(-Camera.main.gameObject.transform.forward * moveSpeed, ForceMode.Impulse);
-        }
-        if (playerInput.ZMove > 0)
-        {
-            rigid.AddForce(Camera.main.gameObject.transform.right * moveSpeed, ForceMode.Impulse);
-        }
-        else if (playerInput.ZMove < 0)
-        {
-            rigid.AddForce(-Camera.main.gameObject.transform.right * moveSpeed, ForceMode.Impulse);
+            
+            if (playerInput.XMove > 0)  //Ball 이동 관련
+            {
+                rigid.AddForce(Camera.main.gameObject.transform.forward * moveSpeed, ForceMode.Impulse);
+            }
+            else if (playerInput.XMove < 0)
+            {
+                rigid.AddForce(-Camera.main.gameObject.transform.forward * moveSpeed, ForceMode.Impulse);
+            }
+            if (playerInput.ZMove > 0)
+            {
+                rigid.AddForce(Camera.main.gameObject.transform.right * moveSpeed, ForceMode.Impulse);
+            }
+            else if (playerInput.ZMove < 0)
+            {
+                rigid.AddForce(-Camera.main.gameObject.transform.right * moveSpeed, ForceMode.Impulse);
+            }
         }
     }
 }
