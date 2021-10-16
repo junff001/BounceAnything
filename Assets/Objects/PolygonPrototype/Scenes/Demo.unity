@@ -48113,7 +48113,7 @@ MonoBehaviour:
   gameClearText: {fileID: 1692763291}
   clearTimeText: {fileID: 90933252}
   clearScoreText: {fileID: 1968893698}
-  targetScore: 1300
+  targetScore: 5000
 --- !u!4 &1776480567
 Transform:
   m_ObjectHideFlags: 0

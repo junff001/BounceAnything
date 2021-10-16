@@ -171,6 +171,7 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
+        // if(Input.GetKeyUp)
         if (gameStart)
         {
             totalSec += Time.deltaTime;

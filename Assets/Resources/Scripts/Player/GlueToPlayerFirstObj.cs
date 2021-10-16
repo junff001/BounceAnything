@@ -6,7 +6,7 @@ public class GlueToPlayerFirstObj : MonoBehaviour
 {
     private GameManager gameManager = null;
     private GlueableObj glueableObj = null;
-    private Collider myCol = null;
+    private Collider  myCol = null;
 
     private Vector3 originPos = Vector3.zero;
 
@@ -38,10 +38,10 @@ public class GlueToPlayerFirstObj : MonoBehaviour
 
     void Update()
     {
-        
+
         // moveTimer += Time.deltaTime;
         // transform.position = Vector3.Lerp(originPos, GetTargetPos(), moveTimer / moveTime);
-        transform.position = Vector3.MoveTowards(transform.position, GetTargetPos(), moveSpeed * Time.deltaTime);        
+        transform.position = Vector3.MoveTowards(transform.position, GetTargetPos(), moveSpeed * Time.deltaTime);
         // if (distance >= 0.5f)
         // {
         //     moveTimer += Time.deltaTime;
@@ -98,9 +98,21 @@ public class GlueToPlayerFirstObj : MonoBehaviour
     {
         if (1 << other.gameObject.layer == LayerMask.GetMask("Player"))
         {
+            if(!other.isTrigger)
+            {
+                return;
+            }
+
+            float distance = Vector3.Distance(transform.position, other.transform.position);
+
             transform.SetParent(gameManager.PlayerFirstObjScript.transform);
             gameObject.layer = transform.parent.gameObject.layer;
-            myCol.isTrigger = false;
+
+            if(gameManager.PlayerFirstObjScript.MyCol.radius < distance)
+            {
+                gameManager.PlayerFirstObjScript.MyCol.radius = distance;
+            }
+
             gameManager.PlayerFirstObjScript.PlayerTotalSize += glueableObj.size;
             enabled = false;
         }

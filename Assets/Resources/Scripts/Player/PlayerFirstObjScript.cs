@@ -5,7 +5,11 @@ using UnityEngine;
 public class PlayerFirstObjScript : MonoBehaviour
 {
     private GameManager gameManager = null;
-    private Collider myCol = null;
+    private SphereCollider myCol = null;
+    public SphereCollider MyCol
+    {
+        get { return myCol; }
+    }
     private float playerTotalSize = 0f;
     public float PlayerTotalSize
     {
@@ -26,7 +30,7 @@ public class PlayerFirstObjScript : MonoBehaviour
     {
         gameManager = GameManager.Instance;
 
-        myCol = GetComponent<Collider>();
+        myCol = GetComponent<SphereCollider>();
 
         playerTotalSize = myCol.bounds.extents.x * myCol.bounds.extents.y * myCol.bounds.extents.z; // 모양에 따라 알맞는 크기를 구하기 힘들다고 판단, 크기를 구하는 식을 하나로 통일한다.
         gameManager.PlayerFirstObjScript = this;
@@ -36,7 +40,7 @@ public class PlayerFirstObjScript : MonoBehaviour
     {
         SetPlayerTotalSize();
     }
-    private void OnCollisionExit(Collision other)
+    private void OnCollisionEnter(Collision other)
     {
         GlueableObj glueableObj = other.transform.GetComponent<GlueableObj>();
 
@@ -45,18 +49,20 @@ public class PlayerFirstObjScript : MonoBehaviour
             if (playerTotalSize >= glueableObj.size)
             {
                 glueableObj.gameObject.AddComponent<GlueToPlayerFirstObj>();
+
                 glueableObj.socreUp = true;
             }
         }
     }
+    // OnCollisionStay 처리
     private void SetPlayerTotalSize()
     {
-        if(plusTotalSize > 0f)
+        if (plusTotalSize > 0f)
         {
             playerTotalSize += Time.fixedDeltaTime;
             playerTotalSize -= Time.fixedDeltaTime;
 
-            if(plusTotalSize < 0f)
+            if (plusTotalSize < 0f)
             {
                 playerTotalSize -= plusTotalSize;
                 plusTotalSize = 0f;
