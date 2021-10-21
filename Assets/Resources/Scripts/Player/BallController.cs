@@ -17,7 +17,7 @@ public class BallController : MonoBehaviour
     private float totalTime = 0f;
     private bool isGround;
 
-    // AddForce Á¦ÇÑÀ» °Å´Â º¯¼ö
+    // AddForce ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ ï¿½ï¿½ï¿½ï¿½
     public float minValue = 1f;
     public float maxValue = 10f;
 
@@ -58,9 +58,9 @@ public class BallController : MonoBehaviour
 
     private void BallMove()
     {
-        if (isGround) //Ball Á¡ÇÁ °ü·Ã
+        if (isGround) //Ball ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         {
-            if (playerInput.XMove > 0)  //Ball ÀÌµ¿ °ü·Ã ¹× AddForce Á¦ÇÑ
+            if (playerInput.XMove > 0)  //Ball ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ AddForce ï¿½ï¿½ï¿½ï¿½
             {
                 rigid.AddForce(Camera.main.gameObject.transform.forward * moveSpeed, ForceMode.Impulse);
                 //rigid.velocity = new Vector3(Mathf.Clamp(moveSpeed, minValue, maxValue), 
@@ -72,7 +72,7 @@ public class BallController : MonoBehaviour
             {
                 rigid.AddForce(-Camera.main.gameObject.transform.forward * moveSpeed, ForceMode.Impulse);
             }
-            if (playerInput.ZMove > 0) // ÆÄ¶õÃà  
+            if (playerInput.ZMove > 0) // ï¿½Ä¶ï¿½ï¿½ï¿½  
             {
                 rigid.AddForce(Camera.main.gameObject.transform.right * moveSpeed, ForceMode.Impulse);
             }
