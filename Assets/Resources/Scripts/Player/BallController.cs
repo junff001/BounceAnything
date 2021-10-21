@@ -58,9 +58,9 @@ public class BallController : MonoBehaviour
 
     private void BallMove()
     {
-        if (isGround) //Ball ���� ����
+        if (isGround) //Ball 이동관련
         {
-            if (playerInput.XMove > 0)  //Ball �̵� ���� �� AddForce ����
+            if (playerInput.XMove > 0)  //Ball 힘을 가하고 제한
             {
                 rigid.AddForce(Camera.main.gameObject.transform.forward * moveSpeed, ForceMode.Impulse);
                 //rigid.velocity = new Vector3(Mathf.Clamp(moveSpeed, minValue, maxValue), 
