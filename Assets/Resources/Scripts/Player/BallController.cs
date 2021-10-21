@@ -55,7 +55,6 @@ public class BallController : MonoBehaviour
             if (playerInput.XMove > 0)
             {
                 rigid.AddForce(Camera.main.gameObject.transform.forward * moveSpeed, ForceMode.Impulse);
-                //Debug.Log(string.Format("x:{0}, z:{1}", rigid.velocity.x, rigid.velocity.z));
             }
             else if (playerInput.XMove < 0)
             {
@@ -71,6 +70,7 @@ public class BallController : MonoBehaviour
             }
 
             rigid.velocity = Vector3.ClampMagnitude(rigid.velocity, maxSpeed); //공 속도제한
+            Debug.Log(string.Format("BallVelocity:{0}", rigid.velocity));
         }
     }
 }

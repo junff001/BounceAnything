@@ -10,9 +10,9 @@ public class PlayerFirstObjScript : MonoBehaviour
     {
         get { return myCol; }
     }
-    [Header("플레이어의 처음 사이즈")]
+    [Header("플레이어 오브젝트의 첫 사이즈")]
     [SerializeField]
-    private float playerOriginSize = 0f;
+    private float playerSizeOrigin = 0f;
     private float playerTotalSize = 0f;
     public float PlayerTotalSize
     {
@@ -35,17 +35,17 @@ public class PlayerFirstObjScript : MonoBehaviour
 
         myCol = GetComponent<SphereCollider>();
 
-        playerTotalSize = playerOriginSize;
-        // playerTotalSize = myCol.bounds.extents.x * myCol.bounds.extents.y * myCol.bounds.extents.z; 
-        //// 모양에 따라 알맞는 크기를 구하기 힘들다고 판단, 크기를 구하는 식을 하나로 통일한다.
+        playerTotalSize = playerSizeOrigin;
+        //playerTotalSize = myCol.bounds.extents.x * myCol.bounds.extents.y * myCol.bounds.extents.z; 
+        // 모양에 따라 알맞는 크기를 구하기 힘들다고 판단, 크기를 구하는 식을 하나로 통일한다.
         gameManager.PlayerFirstObjScript = this;
     }
 
     void FixedUpdate()
     {
-        // SetPlayerTotalSize();
+        //SetPlayerTotalSize();
     }
-    private void OnCollisionEnter(Collision other) // 붙을 수 있는 오브젝트와 충돌했을 때
+    private void OnTriggerEnter(Collider other)
     {
         GlueableObj glueableObj = other.transform.GetComponent<GlueableObj>();
 
@@ -63,7 +63,7 @@ public class PlayerFirstObjScript : MonoBehaviour
         }
     }
     // OnCollisionStay 처리
-    private void SetPlayerTotalSize() // 나도 내가 왜넣었는지 기억 안남, 일단 남겨둠
+    private void SetPlayerTotalSize()
     {
         if (plusTotalSize > 0f)
         {
