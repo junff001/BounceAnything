@@ -9,10 +9,17 @@ public class GlueableObj : MonoBehaviour
     private Quaternion originRotate = Quaternion.identity;
     private Collider myCol = null;
 
-    public float size { get; private set; }
+    [Header("이 오브젝트의 크기, 붙었을 때 늘어나는 크기")]
+    [SerializeField]
+    private float size = 0f;
+    public float Size
+    {
+        get { return size; }
+        set { size = value; }
+    }
     public bool socreUp = false;
 
-    private void Awake() 
+    private void Awake()
     {
         gameManager = GameManager.Instance;
         myCol = GetComponent<Collider>();
@@ -21,8 +28,8 @@ public class GlueableObj : MonoBehaviour
 
         originPos = transform.position;
         originRotate = transform.rotation;
-        
-        size = myCol.bounds.extents.x * myCol.bounds.extents.y * myCol.bounds.extents.z;
+
+        // size = myCol.bounds.extents.x * myCol.bounds.extents.y * myCol.bounds.extents.z;
     }
     void Start()
     {
@@ -33,6 +40,6 @@ public class GlueableObj : MonoBehaviour
             socreUp = false;
             transform.position = originPos;
             transform.rotation = originRotate;
-        }; 
+        };
     }
 }

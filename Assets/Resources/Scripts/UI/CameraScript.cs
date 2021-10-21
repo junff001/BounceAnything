@@ -39,7 +39,7 @@ public class CameraScript : MonoBehaviour
     }
     void Update()
     {
-        if (gameManager.GameStart)
+        if (gameManager.GameStart) // 카메라 시점관련 코드
         {
             Vector3 cameraPos = new Vector3(playerTrm.position.x - transform.forward.x * cameraRange, playerTrm.position.y, playerTrm.position.z - transform.forward.z * cameraRange);
             transform.position = cameraPos;

@@ -113,9 +113,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public event Action StartGame;
-    public event Action EndGame;
-    public event Action RestartGame;
+    public event Action StartGame; // 게임이 시작할 때 실행됌. 여러 수치를 초기화 할 때 사용중
+    public event Action EndGame; // 게임이 끝났을 때 점수 합산, 클리어 시간 기록 등을 할때 씀
+    public event Action RestartGame; // 게임 다시시작할 때 실행, 오브젝트들의 위치 초기화 등을 할 때 사용
 
     private void Awake()
     {
@@ -158,7 +158,7 @@ public class GameManager : MonoBehaviour
         };
 
         RestartGame = () =>
-        {            
+        {
             EndPanel.SetActive(false);
             StartPanel.SetActive(true);
         };
@@ -188,11 +188,11 @@ public class GameManager : MonoBehaviour
             EndGame();
         }
     }
-    public void OnClickStartBtn()
+    public void OnClickStartBtn() // StartButton을 눌렀을 때 실행
     {
         StartGame();
     }
-    public void OnClickReStartBtn()
+    public void OnClickReStartBtn() // RestartButton을 눌렀을 때 실행
     {
         RestartGame();
 

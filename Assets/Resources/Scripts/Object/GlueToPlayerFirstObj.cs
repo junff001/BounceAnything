@@ -78,7 +78,7 @@ public class GlueToPlayerFirstObj : MonoBehaviour
         return suburbPos;
     }
 
-    private Vector3 GetTargetPos() // 오브젝트 위치
+    private Vector3 GetTargetPos() // 이 오브젝트에서 플레이어 오브젝트한테 Ray를 쏨, hit.point를 반환
     {
         Vector3 targetPos = Vector3.zero;
 
@@ -97,7 +97,7 @@ public class GlueToPlayerFirstObj : MonoBehaviour
         return targetPos;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) // 플레이어의 Collider중 isTrigger가 true인 Collider와 충돌했을 때
     {
         if (1 << other.gameObject.layer == LayerMask.GetMask("Player"))
         {
@@ -116,7 +116,7 @@ public class GlueToPlayerFirstObj : MonoBehaviour
                 gameManager.PlayerFirstObjScript.MyCol.radius = distance;
             }
 
-            gameManager.PlayerFirstObjScript.PlayerTotalSize += glueableObj.size;
+            gameManager.PlayerFirstObjScript.PlayerTotalSize += glueableObj.Size;
             enabled = false;
         }
     }
