@@ -66,7 +66,7 @@ public class BallController : MonoBehaviour
                 //rigid.velocity = new Vector3(Mathf.Clamp(moveSpeed, minValue, maxValue), 
                 //rigid.velocity.y, rigid.velocity.z);
 
-                Debug.Log(string.Format("x:{0}, z:{1}", rigid.velocity.x, rigid.velocity.z));
+                //Debug.Log(string.Format("x:{0}, z:{1}", rigid.velocity.x, rigid.velocity.z));
             }
             else if (playerInput.XMove < 0)
             {

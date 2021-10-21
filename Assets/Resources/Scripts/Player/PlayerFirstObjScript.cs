@@ -38,7 +38,7 @@ public class PlayerFirstObjScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        SetPlayerTotalSize();
+        // SetPlayerTotalSize();
     }
     private void OnCollisionEnter(Collision other)
     {
@@ -48,6 +48,9 @@ public class PlayerFirstObjScript : MonoBehaviour
         {
             if (playerTotalSize >= glueableObj.size)
             {
+                Debug.Log("p" + playerTotalSize);
+                Debug.Log("t" + glueableObj.size);
+
                 glueableObj.gameObject.AddComponent<GlueToPlayerFirstObj>();
 
                 glueableObj.socreUp = true;
