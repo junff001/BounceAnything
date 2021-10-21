@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 2492716001113272907}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 11.28, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4857216030310625355}
   m_Father: {fileID: 0}
@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveCol: {fileID: 7866194373952764180}
+  perDis: 1
 --- !u!114 &2492716001113272908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4857216030310625355}
   - component: {fileID: 7866194373952764180}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: MoveCol
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -16,14 +16,7 @@ public class GlueToPlayerFirstObj : MonoBehaviour
     }
 
     private float moveSpeed = 20f;
-    private float moveTime
-    {
-        get
-        {
-            return distance / moveSpeed;
-        }
-    }
-    private float moveTimer = 0f;
+
 
     private bool moveEnd = false;
 
@@ -89,12 +82,12 @@ public class GlueToPlayerFirstObj : MonoBehaviour
     {
         if (1 << other.gameObject.layer == LayerMask.GetMask("Player"))
         {
-            if (!other.isTrigger)
-            {
-                return;
-            }
+            // if (!other.isTrigger)
+            // {
+            //     return;
+            // }
 
-            float distance = Vector3.Distance(transform.position, other.transform.position) / 2;
+            float distance = Vector3.Distance(GetTargetPos(), other.transform.position) / gameManager.PlayerFirstObjScript.GetMaxSizeValue();
             
             Debug.Log(distance);
 

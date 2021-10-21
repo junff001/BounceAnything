@@ -33,6 +33,11 @@ public class PlayerFirstObjScript : MonoBehaviour
         get { return plusTotalSize; }
         set { plusTotalSize = value; }
     }
+    [Header("MoveCol의 radius값의 증가 수치는 이 값에 반비례")]
+    [SerializeField]
+    private float perDis = 2f;
+    public float PerDis
+    { get { return perDis; } }
     void Start()
     {
         gameManager = GameManager.Instance;
@@ -61,9 +66,26 @@ public class PlayerFirstObjScript : MonoBehaviour
             }
         }
     }
-    private void SetSphereCollider()
+    public float GetMaxSizeValue()
     {
+        float a = 0f;
 
+        if(a < transform.localScale.x)
+        {
+            a = transform.localScale.x;
+        }
+
+        if(a < transform.localScale.y)
+        {
+            a = transform.localScale.y;
+        }
+
+        if(a < transform.localScale.z)
+        {
+            a = transform.localScale.z;
+        }
+
+        return a;
     }
     // OnCollisionStay 처리
     // private void SetPlayerTotalSize()
