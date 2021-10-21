@@ -168,5 +168,3 @@ MonoBehaviour:
   moveSpeed: 5
   rotationSpeed: 3
   jumpHeight: 0
-  minValue: 1
-  maxValue: 10

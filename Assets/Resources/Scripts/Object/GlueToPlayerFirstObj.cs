@@ -6,13 +6,13 @@ public class GlueToPlayerFirstObj : MonoBehaviour
 {
     private GameManager gameManager = null;
     private GlueableObj glueableObj = null;
-    private Collider  myCol = null;
+    private Collider myCol = null;
 
     private Vector3 originPos = Vector3.zero;
 
     private float distance
     {
-        get { return Vector3.Distance(GetSuburbPos(), GetTargetPos()); }
+        get { return Vector3.Distance(GetSuburbPos(), GetTargetPos()); } // 오브젝트 
     }
 
     private float moveSpeed = 20f;
@@ -58,7 +58,8 @@ public class GlueToPlayerFirstObj : MonoBehaviour
         //     enabled = false;
         // }
     }
-    private Vector3 GetSuburbPos()
+
+    private Vector3 GetSuburbPos() //공 밖 오브젝트 RaycastHit으로 체크
     {
         Vector3 suburbPos = Vector3.zero;
 
@@ -76,7 +77,8 @@ public class GlueToPlayerFirstObj : MonoBehaviour
 
         return suburbPos;
     }
-    private Vector3 GetTargetPos()
+
+    private Vector3 GetTargetPos() // 오브젝트 위치
     {
         Vector3 targetPos = Vector3.zero;
 
@@ -94,6 +96,7 @@ public class GlueToPlayerFirstObj : MonoBehaviour
 
         return targetPos;
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (1 << other.gameObject.layer == LayerMask.GetMask("Player"))
