@@ -23,7 +23,9 @@ public class GlueableObj : MonoBehaviour
         originRotate = transform.rotation;
         
         size = myCol.bounds.extents.x * myCol.bounds.extents.y * myCol.bounds.extents.z;
-
+    }
+    void Start()
+    {
         gameManager.RestartGame += () =>
         {
             transform.SetParent(gameManager.GlueableObjParent);
@@ -32,9 +34,5 @@ public class GlueableObj : MonoBehaviour
             transform.position = originPos;
             transform.rotation = originRotate;
         }; 
-    }
-    void Start()
-    {
-
     }
 }
