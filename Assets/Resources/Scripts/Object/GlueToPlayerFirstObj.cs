@@ -35,12 +35,7 @@ public class GlueToPlayerFirstObj : MonoBehaviour
     {
         float distance = Vector3.Distance(transform.position, GetTargetPos());
 
-
         transform.position = Vector3.MoveTowards(transform.position, GetTargetPos(), moveSpeed * Time.deltaTime);
-        
-
-
-        Debug.Log(myCol.bounds);
     }
     private Vector3 GetSuburbPos()
     {
@@ -99,7 +94,8 @@ public class GlueToPlayerFirstObj : MonoBehaviour
                 gameManager.PlayerFirstObjScript.MoveCol.radius = distance;
             }
 
-            gameManager.PlayerFirstObjScript.PlayerTotalSize += glueableObj.size;
+
+            gameManager.PlayerFirstObjScript.PlayerTotalSize += glueableObj.Size;
             enabled = false;
         }
     }

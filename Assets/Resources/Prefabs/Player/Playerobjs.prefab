@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveCol: {fileID: 7866194373952764180}
-  perDis: 1
+  playerSize: 1
 --- !u!114 &2492716001113272908
 MonoBehaviour:
   m_ObjectHideFlags: 0

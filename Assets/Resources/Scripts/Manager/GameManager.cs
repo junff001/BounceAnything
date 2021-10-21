@@ -77,7 +77,9 @@ public class GameManager : MonoBehaviour
     }
 
     private bool gameClear = false;
-
+    
+    [Header("점수가 오르는 기준: 붙은 오브젝트의 크기 X 100")]
+    [SerializeField]
     private float score = 0f;
     public float Score
     {

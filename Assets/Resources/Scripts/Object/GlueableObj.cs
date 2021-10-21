@@ -9,7 +9,14 @@ public class GlueableObj : MonoBehaviour
     private Quaternion originRotate = Quaternion.identity;
     private Collider myCol = null;
 
-    public float size { get; set; }
+    [Header("이 오브젝트가 플레이어에게 붙을 수 있는지에 대한 기준이 되는 크기")]
+    [SerializeField]
+    private float size = 0f; // 이 오브젝트의 크기
+    public float Size 
+    {
+        get{return size;}
+        set{size = value;}
+    }
     public bool socreUp = false;
 
     private void Awake() 
@@ -22,7 +29,7 @@ public class GlueableObj : MonoBehaviour
         originPos = transform.position;
         originRotate = transform.rotation;
         
-        size = myCol.bounds.extents.x * myCol.bounds.extents.y * myCol.bounds.extents.z;
+        // size = myCol.bounds.extents.x * myCol.bounds.extents.y * myCol.bounds.extents.z;
     }
     void Start()
     {

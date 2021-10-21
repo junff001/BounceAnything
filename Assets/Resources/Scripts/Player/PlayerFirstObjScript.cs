@@ -17,6 +17,9 @@ public class PlayerFirstObjScript : MonoBehaviour
         get { return moveCol; }
         set { moveCol = value; }
     }
+    [Header("플레이어의 시작 크기")]
+    [SerializeField]
+    private float playerSize = 0f;
     private float playerTotalSize = 0f;
     public float PlayerTotalSize
     {
@@ -33,18 +36,14 @@ public class PlayerFirstObjScript : MonoBehaviour
         get { return plusTotalSize; }
         set { plusTotalSize = value; }
     }
-    [Header("MoveCol의 radius값의 증가 수치는 이 값에 반비례")]
-    [SerializeField]
-    private float perDis = 2f;
-    public float PerDis
-    { get { return perDis; } }
     void Start()
     {
         gameManager = GameManager.Instance;
 
         myCol = GetComponent<SphereCollider>();
 
-        playerTotalSize = myCol.bounds.extents.x * myCol.bounds.extents.y * myCol.bounds.extents.z; // 모양에 따라 알맞는 크기를 구하기 힘들다고 판단, 크기를 구하는 식을 하나로 통일한다.
+        playerTotalSize = playerSize;
+        // playerTotalSize = myCol.bounds.extents.x * myCol.bounds.extents.y * myCol.bounds.extents.z; // 모양에 따라 알맞는 크기를 구하기 힘들다고 판단, 크기를 구하는 식을 하나로 통일한다.
         gameManager.PlayerFirstObjScript = this;
     }
 
@@ -58,7 +57,7 @@ public class PlayerFirstObjScript : MonoBehaviour
 
         if (glueableObj != null && !glueableObj.socreUp)
         {
-            if (playerTotalSize >= glueableObj.size)
+            if (playerTotalSize >= glueableObj.Size)
             {
                 glueableObj.gameObject.AddComponent<GlueToPlayerFirstObj>();
 
