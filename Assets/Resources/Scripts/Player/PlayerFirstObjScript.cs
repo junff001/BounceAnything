@@ -5,10 +5,17 @@ using UnityEngine;
 public class PlayerFirstObjScript : MonoBehaviour
 {
     private GameManager gameManager = null;
-    private SphereCollider myCol = null;
+    private SphereCollider myCol;
     public SphereCollider MyCol
     {
         get { return myCol; }
+    }
+    [SerializeField]
+    private SphereCollider moveCol = null;
+    public SphereCollider MoveCol
+    {
+        get { return moveCol; }
+        set { moveCol = value; }
     }
     private float playerTotalSize = 0f;
     public float PlayerTotalSize
@@ -48,32 +55,33 @@ public class PlayerFirstObjScript : MonoBehaviour
         {
             if (playerTotalSize >= glueableObj.size)
             {
-                Debug.Log("p" + playerTotalSize);
-                Debug.Log("t" + glueableObj.size);
-
                 glueableObj.gameObject.AddComponent<GlueToPlayerFirstObj>();
 
                 glueableObj.socreUp = true;
             }
         }
     }
-    // OnCollisionStay 처리
-    private void SetPlayerTotalSize()
+    private void SetSphereCollider()
     {
-        if (plusTotalSize > 0f)
-        {
-            playerTotalSize += Time.fixedDeltaTime;
-            playerTotalSize -= Time.fixedDeltaTime;
 
-            if (plusTotalSize < 0f)
-            {
-                playerTotalSize -= plusTotalSize;
-                plusTotalSize = 0f;
-            }
-        }
-        else
-        {
-            plusTotalSize = 0f;
-        }
     }
+    // OnCollisionStay 처리
+    // private void SetPlayerTotalSize()
+    // {
+    //     if (plusTotalSize > 0f)
+    //     {
+    //         playerTotalSize += Time.fixedDeltaTime;
+    //         playerTotalSize -= Time.fixedDeltaTime;
+
+    //         if (plusTotalSize < 0f)
+    //         {
+    //             playerTotalSize -= plusTotalSize;
+    //             plusTotalSize = 0f;
+    //         }
+    //     }
+    //     else
+    //     {
+    //         plusTotalSize = 0f;
+    //     }
+    // }
 }

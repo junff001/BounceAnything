@@ -9,7 +9,7 @@ public class GlueableObj : MonoBehaviour
     private Quaternion originRotate = Quaternion.identity;
     private Collider myCol = null;
 
-    public float size { get; private set; }
+    public float size { get; set; }
     public bool socreUp = false;
 
     private void Awake() 

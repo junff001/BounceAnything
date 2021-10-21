@@ -6,7 +6,7 @@ public class GlueToPlayerFirstObj : MonoBehaviour
 {
     private GameManager gameManager = null;
     private GlueableObj glueableObj = null;
-    private Collider  myCol = null;
+    private Collider myCol = null;
 
     private Vector3 originPos = Vector3.zero;
 
@@ -25,6 +25,8 @@ public class GlueToPlayerFirstObj : MonoBehaviour
     }
     private float moveTimer = 0f;
 
+    private bool moveEnd = false;
+
     void Start()
     {
         gameManager = GameManager.Instance;
@@ -38,25 +40,14 @@ public class GlueToPlayerFirstObj : MonoBehaviour
 
     void Update()
     {
+        float distance = Vector3.Distance(transform.position, GetTargetPos());
 
-        // moveTimer += Time.deltaTime;
-        // transform.position = Vector3.Lerp(originPos, GetTargetPos(), moveTimer / moveTime);
+
         transform.position = Vector3.MoveTowards(transform.position, GetTargetPos(), moveSpeed * Time.deltaTime);
-        // if (distance >= 0.5f)
-        // {
-        //     moveTimer += Time.deltaTime;
-        //     transform.position = Vector3.Lerp(originPos, GetTargetPos(), moveTimer / moveTime);
-        // }
-        // else
-        // {
-        //     transform.SetParent(gameManager.PlayerFirstObjScript.transform);
-        //     gameObject.layer = transform.parent.gameObject.layer;
-        //     myCol.isTrigger = false;
+        
 
-        //     gameManager.PlayerFirstObjScript.PlayerTotalSize += glueableObj.size;
 
-        //     enabled = false;
-        // }
+        Debug.Log(myCol.bounds);
     }
     private Vector3 GetSuburbPos()
     {
@@ -98,19 +89,21 @@ public class GlueToPlayerFirstObj : MonoBehaviour
     {
         if (1 << other.gameObject.layer == LayerMask.GetMask("Player"))
         {
-            if(!other.isTrigger)
+            if (!other.isTrigger)
             {
                 return;
             }
 
-            float distance = Vector3.Distance(transform.position, other.transform.position);
+            float distance = Vector3.Distance(transform.position, other.transform.position) / 2;
+            
+            Debug.Log(distance);
 
             transform.SetParent(gameManager.PlayerFirstObjScript.transform);
             gameObject.layer = transform.parent.gameObject.layer;
 
-            if(gameManager.PlayerFirstObjScript.MyCol.radius < distance)
+            if (gameManager.PlayerFirstObjScript.MoveCol.radius < distance)
             {
-                gameManager.PlayerFirstObjScript.MyCol.radius = distance;
+                gameManager.PlayerFirstObjScript.MoveCol.radius = distance;
             }
 
             gameManager.PlayerFirstObjScript.PlayerTotalSize += glueableObj.size;
