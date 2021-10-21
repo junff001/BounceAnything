@@ -158,9 +158,7 @@ public class GameManager : MonoBehaviour
         };
 
         RestartGame = () =>
-        {
-            Destroy(currentPlayerObj);
-            
+        {            
             EndPanel.SetActive(false);
             StartPanel.SetActive(true);
         };
@@ -197,5 +195,7 @@ public class GameManager : MonoBehaviour
     public void OnClickReStartBtn()
     {
         RestartGame();
+
+        Destroy(currentPlayerObj);
     }
 }
