@@ -60,6 +60,22 @@ public class PlayerFirstObjScript : MonoBehaviour
 
                 glueableObj.socreUp = true;
             }
+            else
+            {
+                other.isTrigger = false;
+            }
+        }
+    }
+    private void OnCollisionEnter(Collision other)
+    {
+        GlueableObj glueableObj = other.transform.GetComponent<GlueableObj>();
+
+        if (glueableObj != null && !glueableObj.socreUp)
+        {
+            if (playerTotalSize >= glueableObj.SizeOrigin)
+            {
+                other.collider.isTrigger = true;
+            }
         }
     }
     // OnCollisionStay 처리
