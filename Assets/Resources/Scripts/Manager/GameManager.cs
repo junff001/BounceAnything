@@ -39,6 +39,13 @@ public class GameManager : MonoBehaviour
         get { return whatIsGlueableObj; }
     }
 
+    private Sprite newCursor = null;
+    private Sprite newCursor_Clicked = null;
+    [SerializeField]
+    private RectTransform cursorTrm = null;
+    [SerializeField]
+    private Image cursorImg = null;
+
     [SerializeField]
     private GameObject playerPrefab = null;
     private GameObject currentPlayerObj = null;
@@ -165,7 +172,12 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        Sprite[] newCursors = Resources.LoadAll<Sprite>("Image/Cursors/HandIcons");
 
+        newCursor = newCursors[0];
+        newCursor_Clicked = newCursors[1];
+
+        Cursor.visible = false;
     }
     void Update()
     {
@@ -186,6 +198,17 @@ public class GameManager : MonoBehaviour
             gameClear = true;
 
             EndGame();
+        }
+
+        cursorTrm.position = Input.mousePosition;
+
+        if(Input.GetMouseButton(0))
+        {
+            cursorImg.sprite = newCursor_Clicked;
+        }
+        else
+        {
+            cursorImg.sprite = newCursor;
         }
     }
     public void OnClickStartBtn() // StartButton을 눌렀을 때 실행
