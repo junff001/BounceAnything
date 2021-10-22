@@ -116,7 +116,7 @@ public class GlueToPlayerFirstObj : MonoBehaviour
                 gameManager.PlayerFirstObjScript.MyCol.radius = distance;
             }
 
-            gameManager.PlayerFirstObjScript.PlayerTotalSize += glueableObj.Size;
+            gameManager.PlayerFirstObjScript.PlayerTotalSize += glueableObj.SizePlus;
             enabled = false;
         }
     }
