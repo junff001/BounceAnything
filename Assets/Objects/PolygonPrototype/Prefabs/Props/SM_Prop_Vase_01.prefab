@@ -95,6 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2518eceb45585304aa0d7119cb81564a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sizeOrigin: 7
+  sizePlus: 0.1
   socreUp: 0
 --- !u!64 &-4473756706858083196
 MeshCollider:
@@ -104,7 +106,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1787808881713768}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
