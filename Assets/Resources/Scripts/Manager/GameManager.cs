@@ -124,12 +124,8 @@ public class GameManager : MonoBehaviour
     public event Action EndGame; // 게임이 끝났을 때 점수 합산, 클리어 시간 기록 등을 할때 씀
     public event Action RestartGame; // 게임 다시시작할 때 실행, 오브젝트들의 위치 초기화 등을 할 때 사용
 
-    private GameObject ballChild;
-
     private void Awake()
     {
-        ballChild = playerPrefab.transform.GetChild(1).gameObject; // Ball 프리팹의 자식인 진짜 공을 가져옴
-
         StartGame = () =>
         {
             totalSec = 0f;
