@@ -37,8 +37,7 @@ public class PlayerFirstObjScript : MonoBehaviour
 
         playerTotalSize = playerSizeOrigin;
         //playerTotalSize = myCol.bounds.extents.x * myCol.bounds.extents.y * myCol.bounds.extents.z; 
-        // 모양에 따라 알맞는 크기를 구하기 힘들다고 판단, 크기를 구하는 식을 하나로 통일한다.
-        gameManager.PlayerFirstObjScript = this;
+        // 모양에 따라 알맞는 크기를 구하기 힘들다고 판단, 크기를 구하는 식을 하나로 통일한다;
     }
 
     void FixedUpdate()

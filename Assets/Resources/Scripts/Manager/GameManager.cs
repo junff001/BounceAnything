@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
     public GameObject CurrentPlayerObj
     {
         get { return currentPlayerObj; }
+        set{currentPlayerObj = value;}
     }
 
     [SerializeField]
@@ -138,6 +139,12 @@ public class GameManager : MonoBehaviour
             gameClear = false;
 
             currentPlayerObj = Instantiate(playerPrefab, playerSpawnTrm);
+            playerFirstObjScript = currentPlayerObj.GetComponent<PlayerFirstObjScript>();
+
+            if(playerFirstObjScript == null)
+            {
+                playerFirstObjScript = currentPlayerObj.GetComponentInChildren<PlayerFirstObjScript>();
+            }
 
             StartPanel.SetActive(false);
             scoreText.gameObject.SetActive(true);

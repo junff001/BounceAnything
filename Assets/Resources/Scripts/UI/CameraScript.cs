@@ -31,10 +31,12 @@ public class CameraScript : MonoBehaviour
     {
         gameManager.StartGame += () =>
         {
+            Debug.Log(gameManager.PlayerFirstObjScript);
             playerInput = FindObjectOfType<PlayerInput>();
-            playerFirstObjScript = FindObjectOfType<PlayerFirstObjScript>();
 
-            playerTrm = gameManager.CurrentPlayerObj.transform;
+            playerFirstObjScript = gameManager.PlayerFirstObjScript;
+
+            playerTrm = playerFirstObjScript.transform;
         };
     }
     void Update()
