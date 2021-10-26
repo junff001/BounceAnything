@@ -25,11 +25,17 @@ public class BallController : MonoBehaviour
         gameManager = GameManager.Instance;
         rigid = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
+        
     }
 
     void FixedUpdate()
     {
         BallMove();
+    }
+
+    void Update()
+    {
+        
     }
 
     private void OnCollisionStay(Collision collision)
@@ -70,8 +76,9 @@ public class BallController : MonoBehaviour
             }
 
             rigid.velocity = Vector3.ClampMagnitude(rigid.velocity, maxSpeed); //공 속도제한
-            Debug.Log(string.Format("BallVelocity:{0}", rigid.velocity));
+            //Debug.Log(string.Format("BallPosition:{0}, ParentPosition:{1}", transform.position, transform.parent.position));
         }
     }
 }
 
+ 
