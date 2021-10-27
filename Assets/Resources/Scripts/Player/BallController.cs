@@ -23,6 +23,12 @@ public class BallController : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.Instance;
+
+        gameManager.RespwnPlayer += () =>
+        {
+            rigid.velocity = Vector3.zero;
+        };
+
         rigid = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
     }
