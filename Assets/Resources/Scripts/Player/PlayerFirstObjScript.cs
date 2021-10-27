@@ -35,6 +35,7 @@ public class PlayerFirstObjScript : MonoBehaviour
         get { return plusRadius; }
         set { plusRadius = value; }
     }
+
     void Start()
     {
         gameManager = GameManager.Instance;

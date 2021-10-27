@@ -7,6 +7,8 @@ public class GlueToPlayerFirstObj : MonoBehaviour
     private GameManager gameManager = null;
     private GlueableObj glueableObj = null;
     private Collider myCol = null;
+    
+    
 
     private Vector3 originPos = Vector3.zero;
 
@@ -99,24 +101,24 @@ public class GlueToPlayerFirstObj : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) // 플레이어의 Collider중 isTrigger가 true인 Collider와 충돌했을 때
     {
-        if (1 << other.gameObject.layer == LayerMask.GetMask("Player"))
+        if (1 << other.gameObject.layer == LayerMask.GetMask("Player")) // 플레이어에게로 날아가는 오브젝트가 플레이어와 충돌(이동에 쓰이는 구 형의 SphereCollider가 아닌, IsTrigger == true인 Collider와 충돌 체크
         {
             if(!other.isTrigger)
             {
                 return;
             }
 
-            float distance = Vector3.Distance(transform.position, other.transform.position);
+            float distance = Vector3.Distance(transform.position, other.transform.position); // 붙었을 때 PlayerObject의 중심까지의 거리를 잰다.
 
             transform.SetParent(gameManager.PlayerFirstObjScript.transform);
             gameObject.layer = transform.parent.gameObject.layer;
 
-            if(gameManager.PlayerFirstObjScript.MyCol.radius < distance)
+            if(gameManager.PlayerFirstObjScript.MyCol.radius < distance) // 잰 거리가 이동용으로 쓰이는 SphereCollider의 radius값보다 크면,
             {
-                gameManager.PlayerFirstObjScript.PlusRadius += distance - gameManager.PlayerFirstObjScript.MyCol.radius;
-            }
+                gameManager.PlayerFirstObjScript.PlusRadius += distance - gameManager.PlayerFirstObjScript.MyCol.radius; // distance와 SphereCollider의 radius값의 차이만큼 PlusRadius에 값을 더해준다.
+            }                                                                                                            // radius는 PlusRadius의 값만큼 서서히 증가한다.
 
-            gameManager.PlayerFirstObjScript.PlusPlayerTotalSize += glueableObj.SizePlus;
+            gameManager.PlayerFirstObjScript.PlusPlayerTotalSize += glueableObj.SizePlus; // PlusPlayerTotalSize는 PlusRadius와 동일한 역할을 한다.
             enabled = false;
         }
     }
