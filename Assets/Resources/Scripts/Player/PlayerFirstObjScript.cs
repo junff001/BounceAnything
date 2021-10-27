@@ -32,7 +32,7 @@ public class PlayerFirstObjScript : MonoBehaviour
     public float PlusRadius
     {
         get { return plusRadius; }
-        set { Debug.Log("Aaa"); plusRadius = value; }
+        set { plusRadius = value; }
     }
     void Start()
     {
@@ -50,7 +50,7 @@ public class PlayerFirstObjScript : MonoBehaviour
         SetPlayerTotalSize();
         SetPlayerColliderRadius();
 
-        gameManager.Score = (playerTotalSize - playerSizeOrigin) * 100f; // 현재점수 갱신
+        gameManager.Score = playerTotalSize; // 현재점수 갱신
 
     }
     private void OnTriggerEnter(Collider other)
@@ -109,14 +109,14 @@ public class PlayerFirstObjScript : MonoBehaviour
     }
     private void SetPlayerColliderRadius()
     {
-        if(plusRadius > 0f)
+        if (plusRadius > 0f)
         {
             float pastePlusRadius = plusRadius;
 
             plusRadius -= Time.fixedDeltaTime;
             myCol.radius += Time.fixedDeltaTime;
 
-            if(plusRadius < 0f)
+            if (plusRadius < 0f)
             {
                 myCol.radius += pastePlusRadius - Time.fixedDeltaTime;
                 plusRadius = 0f;
