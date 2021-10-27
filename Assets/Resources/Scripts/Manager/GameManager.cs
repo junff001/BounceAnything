@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private PoolManager poolManager = null;
+
     [SerializeField]
     private LayerMask whatIsPlayerFirstObj;
     public LayerMask WhatisPlayerFirstObj
@@ -43,6 +45,8 @@ public class GameManager : MonoBehaviour
     private Sprite newCursor_Clicked = null;
     [SerializeField]
     private RectTransform cursorTrm = null;
+    [SerializeField]
+    private RectTransform getScoreTextTrm = null;
     [SerializeField]
     private Image cursorImg = null;
 
@@ -68,6 +72,8 @@ public class GameManager : MonoBehaviour
     private GameObject StartPanel = null;
     [SerializeField]
     private GameObject EndPanel = null;
+    [SerializeField]
+    private GameObject GetScoreText = null;
 
     [SerializeField]
     private Text scoreText = null;
@@ -93,7 +99,7 @@ public class GameManager : MonoBehaviour
         set
         {
             score = value;
-            scoreText.text = "Score: " + value;
+            scoreText.text = "Score: " + string.Format("{0:0.##}", score);
         }
     }
 
@@ -128,6 +134,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        poolManager = PoolManager.Instance;
+
         StartGame = () =>
         {
             totalSec = 0f;
@@ -227,6 +235,27 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.R))
         {
             RespwnPlayer();
+        }
+    }
+    public void SpawnGetScoreText(float score)
+    {
+        if (poolManager.TextObjQueue.Count > 0)
+        {
+            GameObject temp = poolManager.TextObjQueue.Dequeue();
+            Text text = temp.GetComponent<Text>();
+
+            if (text == null)
+            {
+                Debug.LogError(temp.name + " has no Text.");
+            }
+
+            text.text = "+ " + score;
+
+            temp.transform.position = getScoreTextTrm.position;
+        }
+        else
+        {
+
         }
     }
     public void OnClickStartBtn() // StartButton을 눌렀을 때 실행
