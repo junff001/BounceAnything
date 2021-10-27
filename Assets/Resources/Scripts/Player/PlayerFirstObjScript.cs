@@ -51,8 +51,8 @@ public class PlayerFirstObjScript : MonoBehaviour
         SetPlayerColliderRadius();
 
         gameManager.Score = playerTotalSize; // 현재점수 갱신
-
     }
+    
     private void OnTriggerEnter(Collider other)
     {
         GlueableObj glueableObj = other.transform.GetComponent<GlueableObj>();

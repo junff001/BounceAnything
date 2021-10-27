@@ -24928,7 +24928,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: -37.6}
+  m_AnchoredPosition: {x: -0.000061035156, y: -103.5}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &777968752
@@ -45313,6 +45313,41 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4874802182062810, guid: 5171d5eb12e0f184a8761aa4157f7d00, type: 3}
   m_PrefabInstance: {fileID: 1385691887}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1390180383
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1390180384}
+  m_Layer: 5
+  m_Name: GetScoreSpawnTrm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1390180384
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390180383}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2076215302}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 626.2, y: 352.4}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1392995105
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57790,17 +57825,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   cursorTrm: {fileID: 1410812052}
+  getScoreTextTrm: {fileID: 1390180384}
   cursorImg: {fileID: 1410812053}
   playerPrefab: {fileID: 2492716001113272907, guid: 82494b345f5542445bba04f831bbf0f5, type: 3}
   playerSpawnTrm: {fileID: 1776480567}
   glueableObjParent: {fileID: 1916320715}
   StartPanel: {fileID: 306294430}
   EndPanel: {fileID: 2049258158}
+  GetScoreText: {fileID: 3778388136266393752, guid: a0b839be6ba318444b55e70f65b6dbd5, type: 3}
   scoreText: {fileID: 777968752}
   gameClearText: {fileID: 1692763291}
   clearTimeText: {fileID: 90933252}
   clearScoreText: {fileID: 1968893698}
-  targetScore: 5000
+  targetScore: 20
 --- !u!4 &1776480567
 Transform:
   m_ObjectHideFlags: 0
@@ -68659,6 +68696,7 @@ RectTransform:
   - {fileID: 2049258159}
   - {fileID: 777968751}
   - {fileID: 1410812052}
+  - {fileID: 1390180384}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

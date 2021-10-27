@@ -166,6 +166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4f16bc9678409449b82aa9d49e67916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 192
   moveSpeed: 3
   rotationSpeed: 3
   jumpHeight: 0
