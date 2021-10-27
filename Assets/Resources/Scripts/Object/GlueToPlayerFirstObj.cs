@@ -113,10 +113,10 @@ public class GlueToPlayerFirstObj : MonoBehaviour
 
             if(gameManager.PlayerFirstObjScript.MyCol.radius < distance)
             {
-                gameManager.PlayerFirstObjScript.MyCol.radius = distance;
+                gameManager.PlayerFirstObjScript.PlusRadius += distance - gameManager.PlayerFirstObjScript.MyCol.radius;
             }
 
-            gameManager.PlayerFirstObjScript.PlayerTotalSize += glueableObj.SizePlus;
+            gameManager.PlayerFirstObjScript.PlusPlayerTotalSize += glueableObj.SizePlus;
             enabled = false;
         }
     }
