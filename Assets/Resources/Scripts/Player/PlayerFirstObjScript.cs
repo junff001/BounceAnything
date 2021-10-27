@@ -29,6 +29,12 @@ public class PlayerFirstObjScript : MonoBehaviour
         get { return plusTotalSize; }
         set { plusTotalSize = value; }
     }
+    private float plusRadius = 0f;
+    public float PlusRadius
+    {
+        get { return plusRadius; }
+        set { plusRadius = value; }
+    }
     void Start()
     {
         gameManager = GameManager.Instance;
@@ -42,7 +48,8 @@ public class PlayerFirstObjScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        //SetPlayerTotalSize();
+        SetPlayerTotalSize();
+        SetPlayerColliderRadius();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -82,18 +89,40 @@ public class PlayerFirstObjScript : MonoBehaviour
     {
         if (plusTotalSize > 0f)
         {
+            float pastePlusTotalSize = plusTotalSize;
+
+            plusTotalSize -= Time.fixedDeltaTime;
             playerTotalSize += Time.fixedDeltaTime;
-            playerTotalSize -= Time.fixedDeltaTime;
 
             if (plusTotalSize < 0f)
             {
-                playerTotalSize -= plusTotalSize;
+                playerTotalSize += pastePlusTotalSize - Time.fixedDeltaTime;
                 plusTotalSize = 0f;
             }
         }
         else
         {
             plusTotalSize = 0f;
+        }
+    }
+    private void SetPlayerColliderRadius()
+    {
+        if(plusRadius > 0f)
+        {
+            float pastePlusRadius = plusRadius;
+
+            plusRadius -= Time.fixedDeltaTime;
+            myCol.radius += Time.fixedDeltaTime;
+
+            if(plusRadius < 0f)
+            {
+                myCol.radius += pastePlusRadius - Time.fixedDeltaTime;
+                plusRadius = 0f;
+            }
+        }
+        else
+        {
+            plusRadius = 0f;
         }
     }
 }
