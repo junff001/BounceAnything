@@ -251,11 +251,23 @@ public class GameManager : MonoBehaviour
 
             text.text = "+ " + score;
 
-            temp.transform.position = getScoreTextTrm.position;
+            text.rectTransform.position = getScoreTextTrm.position;
+            
+            temp.SetActive(true);
         }
         else
         {
+            GameObject temp = Instantiate(GetScoreText, getScoreTextTrm);
+            Text text = temp.GetComponent<Text>();
 
+            if (text == null)
+            {
+                Debug.LogError(temp.name + " has no Text.");
+            }
+
+            text.text = "+ " + score;
+
+            text.rectTransform.position = getScoreTextTrm.position;
         }
     }
     public void OnClickStartBtn() // StartButton을 눌렀을 때 실행

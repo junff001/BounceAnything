@@ -25,10 +25,10 @@ public class PoolManager : MonoBehaviour
     }
 
     [SerializeField]
-    private Queue<Text> textObjQueue = new Queue<GameObject>();
+    private Queue<GameObject> textObjQueue = new Queue<GameObject>();
     public Queue<GameObject> TextObjQueue
     {
-        get { return textObjQueue; }
+        get { return textObjQueue; }                
         set { textObjQueue = value; }
     }
 }

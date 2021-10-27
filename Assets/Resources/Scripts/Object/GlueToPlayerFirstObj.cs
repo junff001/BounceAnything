@@ -4,7 +4,19 @@ using UnityEngine;
 
 public class GlueToPlayerFirstObj : MonoBehaviour
 {
-    private GameManager gameManager = null;
+    private GameManager _gameManager = null;
+    public GameManager gameManager
+    {
+        get{
+            if(_gameManager == null)
+            {
+                _gameManager = GameManager.Instance;
+            }
+
+            return _gameManager;
+        }
+    }
+    
     private GlueableObj glueableObj = null;
     private Collider myCol = null;
 
@@ -27,7 +39,6 @@ public class GlueToPlayerFirstObj : MonoBehaviour
 
     void Start()
     {
-        gameManager = GameManager.Instance;
         glueableObj = GetComponent<GlueableObj>();
         myCol = GetComponent<Collider>();
 
@@ -117,6 +128,9 @@ public class GlueToPlayerFirstObj : MonoBehaviour
             }
 
             gameManager.PlayerFirstObjScript.PlusPlayerTotalSize += glueableObj.SizePlus;
+
+            gameManager.SpawnGetScoreText(glueableObj.SizePlus);
+
             enabled = false;
         }
     }

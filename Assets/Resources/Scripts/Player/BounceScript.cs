@@ -43,7 +43,6 @@ public class BounceScript : MonoBehaviour
         transform.position = currentPosition;
     }
 
-
     private void OnCollisionEnter(Collision other)
     {
         if (whatIsJumpable == (whatIsJumpable | 1 << other.gameObject.layer))
