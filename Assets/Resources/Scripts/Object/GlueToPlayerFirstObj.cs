@@ -7,8 +7,9 @@ public class GlueToPlayerFirstObj : MonoBehaviour
     private GameManager _gameManager = null;
     public GameManager gameManager
     {
-        get{
-            if(_gameManager == null)
+        get
+        {
+            if (_gameManager == null)
             {
                 _gameManager = GameManager.Instance;
             }
@@ -16,7 +17,7 @@ public class GlueToPlayerFirstObj : MonoBehaviour
             return _gameManager;
         }
     }
-    
+
     private GlueableObj glueableObj = null;
     private Collider myCol = null;
 
@@ -112,7 +113,7 @@ public class GlueToPlayerFirstObj : MonoBehaviour
     {
         if (1 << other.gameObject.layer == LayerMask.GetMask("Player"))
         {
-            if(!other.isTrigger)
+            if (!other.isTrigger)
             {
                 return;
             }
@@ -122,14 +123,17 @@ public class GlueToPlayerFirstObj : MonoBehaviour
             transform.SetParent(gameManager.PlayerFirstObjScript.transform);
             gameObject.layer = transform.parent.gameObject.layer;
 
-            if(gameManager.PlayerFirstObjScript.MyCol.radius < distance)
+            if (gameManager.PlayerFirstObjScript.MyCol.radius < distance)
             {
                 gameManager.PlayerFirstObjScript.PlusRadius += distance - gameManager.PlayerFirstObjScript.MyCol.radius;
             }
 
-            gameManager.PlayerFirstObjScript.PlusPlayerTotalSize += glueableObj.SizePlus;
+            if (glueableObj != null)
+            {
+                gameManager.PlayerFirstObjScript.PlusPlayerTotalSize += glueableObj.SizePlus;
 
-            gameManager.SpawnGetScoreText(glueableObj.SizePlus);
+                gameManager.SpawnGetScoreText(glueableObj.SizePlus);
+            }
 
             enabled = false;
         }
