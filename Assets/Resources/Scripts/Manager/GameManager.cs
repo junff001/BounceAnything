@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private PoolManager poolManager = null;
+
     [SerializeField]
     private LayerMask whatIsPlayerFirstObj;
     public LayerMask WhatisPlayerFirstObj
@@ -44,6 +46,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private RectTransform cursorTrm = null;
     [SerializeField]
+    private RectTransform getScoreTextTrm = null;
+    [SerializeField]
     private Image cursorImg = null;
 
     [SerializeField]
@@ -52,7 +56,7 @@ public class GameManager : MonoBehaviour
     public GameObject CurrentPlayerObj
     {
         get { return currentPlayerObj; }
-        set{currentPlayerObj = value;}
+        set { currentPlayerObj = value; }
     }
 
     [SerializeField]
@@ -68,6 +72,8 @@ public class GameManager : MonoBehaviour
     private GameObject StartPanel = null;
     [SerializeField]
     private GameObject EndPanel = null;
+    [SerializeField]
+    private GameObject GetScoreText = null;
 
     [SerializeField]
     private Text scoreText = null;
@@ -93,7 +99,7 @@ public class GameManager : MonoBehaviour
         set
         {
             score = value;
-            scoreText.text = "Score: " + value;
+            scoreText.text = "Score: " + string.Format("{0:0.##}", score);
         }
     }
 
@@ -124,9 +130,12 @@ public class GameManager : MonoBehaviour
     public event Action StartGame; // 게임이 시작할 때 실행됌. 여러 수치를 초기화 할 때 사용중
     public event Action EndGame; // 게임이 끝났을 때 점수 합산, 클리어 시간 기록 등을 할때 씀
     public event Action RestartGame; // 게임 다시시작할 때 실행, 오브젝트들의 위치 초기화 등을 할 때 사용
+    public event Action RespwnPlayer;
 
     private void Awake()
     {
+        poolManager = PoolManager.Instance;
+
         StartGame = () =>
         {
             totalSec = 0f;
@@ -141,7 +150,7 @@ public class GameManager : MonoBehaviour
             currentPlayerObj = Instantiate(playerPrefab, playerSpawnTrm);
             playerFirstObjScript = currentPlayerObj.GetComponent<PlayerFirstObjScript>();
 
-            if(playerFirstObjScript == null)
+            if (playerFirstObjScript == null)
             {
                 playerFirstObjScript = currentPlayerObj.GetComponentInChildren<PlayerFirstObjScript>();
             }
@@ -176,6 +185,11 @@ public class GameManager : MonoBehaviour
             EndPanel.SetActive(false);
             StartPanel.SetActive(true);
         };
+
+        RespwnPlayer = () =>
+        {
+            currentPlayerObj.transform.position = playerSpawnTrm.position;
+        };
     }
     void Start()
     {
@@ -209,13 +223,51 @@ public class GameManager : MonoBehaviour
 
         cursorTrm.position = Input.mousePosition;
 
-        if(Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
             cursorImg.sprite = newCursor_Clicked;
         }
         else
         {
             cursorImg.sprite = newCursor;
+        }
+
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            RespwnPlayer();
+        }
+    }
+    public void SpawnGetScoreText(float score)
+    {
+        if (poolManager.TextObjQueue.Count > 0)
+        {
+            GameObject temp = poolManager.TextObjQueue.Dequeue();
+            Text text = temp.GetComponent<Text>();
+
+            if (text == null)
+            {
+                Debug.LogError(temp.name + " has no Text.");
+            }
+
+            text.text = "+ " + score;
+
+            text.rectTransform.position = getScoreTextTrm.position;
+            
+            temp.SetActive(true);
+        }
+        else
+        {
+            GameObject temp = Instantiate(GetScoreText, getScoreTextTrm);
+            Text text = temp.GetComponent<Text>();
+
+            if (text == null)
+            {
+                Debug.LogError(temp.name + " has no Text.");
+            }
+
+            text.text = "+ " + score;
+
+            text.rectTransform.position = getScoreTextTrm.position;
         }
     }
     public void OnClickStartBtn() // StartButton을 눌렀을 때 실행

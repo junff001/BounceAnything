@@ -9,6 +9,9 @@ public class BallController : MonoBehaviour
     private Rigidbody rigid = null;
 
     [SerializeField]
+    private LayerMask whatIsGround;
+
+    [SerializeField]
     private float moveSpeed = 2f;
     [SerializeField]
     private float rotationSpeed = 3f;
@@ -23,6 +26,12 @@ public class BallController : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.Instance;
+
+        gameManager.RespwnPlayer += () =>
+        {
+            rigid.velocity = Vector3.zero;
+        };
+
         rigid = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
     }
@@ -34,7 +43,7 @@ public class BallController : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.collider.CompareTag("Ground"))
+        if (collision.collider.CompareTag("Ground") || 1 << collision.gameObject.layer == whatIsGround)
         {
             isGround = true;
         }   
@@ -42,7 +51,7 @@ public class BallController : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.collider.CompareTag("Ground"))
+        if (collision.collider.CompareTag("Ground") || 1 << collision.gameObject.layer == whatIsGround)
         {
             isGround = false;
         }
@@ -70,7 +79,7 @@ public class BallController : MonoBehaviour
             }
 
             rigid.velocity = Vector3.ClampMagnitude(rigid.velocity, maxSpeed); //공 속도제한
-            Debug.Log(string.Format("BallVelocity:{0}", rigid.velocity));
+            // Debug.Log(string.Format("BallVelocity:{0}", rigid.velocity));
         }
     }
 }

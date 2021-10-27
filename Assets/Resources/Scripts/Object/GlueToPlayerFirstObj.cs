@@ -4,7 +4,20 @@ using UnityEngine;
 
 public class GlueToPlayerFirstObj : MonoBehaviour
 {
-    private GameManager gameManager = null;
+    private GameManager _gameManager = null;
+    public GameManager gameManager
+    {
+        get
+        {
+            if (_gameManager == null)
+            {
+                _gameManager = GameManager.Instance;
+            }
+
+            return _gameManager;
+        }
+    }
+
     private GlueableObj glueableObj = null;
     private Collider myCol = null;
     
@@ -29,7 +42,6 @@ public class GlueToPlayerFirstObj : MonoBehaviour
 
     void Start()
     {
-        gameManager = GameManager.Instance;
         glueableObj = GetComponent<GlueableObj>();
         myCol = GetComponent<Collider>();
 
@@ -103,7 +115,7 @@ public class GlueToPlayerFirstObj : MonoBehaviour
     {
         if (1 << other.gameObject.layer == LayerMask.GetMask("Player")) // 플레이어에게로 날아가는 오브젝트가 플레이어와 충돌(이동에 쓰이는 구 형의 SphereCollider가 아닌, IsTrigger == true인 Collider와 충돌 체크
         {
-            if(!other.isTrigger)
+            if (!other.isTrigger)
             {
                 return;
             }

@@ -20,7 +20,6 @@ public class PlayerFirstObjScript : MonoBehaviour
         set
         {
             playerTotalSize = value;
-            gameManager.Score = playerTotalSize * 100f;
         }
     }
     private float plusTotalSize = 0f;
@@ -51,7 +50,10 @@ public class PlayerFirstObjScript : MonoBehaviour
     {
         SetPlayerTotalSize();
         SetPlayerColliderRadius();
+
+        gameManager.Score = playerTotalSize; // 현재점수 갱신
     }
+    
     private void OnTriggerEnter(Collider other)
     {
         GlueableObj glueableObj = other.transform.GetComponent<GlueableObj>();
@@ -108,14 +110,14 @@ public class PlayerFirstObjScript : MonoBehaviour
     }
     private void SetPlayerColliderRadius()
     {
-        if(plusRadius > 0f)
+        if (plusRadius > 0f)
         {
             float pastePlusRadius = plusRadius;
 
             plusRadius -= Time.fixedDeltaTime;
             myCol.radius += Time.fixedDeltaTime;
 
-            if(plusRadius < 0f)
+            if (plusRadius < 0f)
             {
                 myCol.radius += pastePlusRadius - Time.fixedDeltaTime;
                 plusRadius = 0f;
