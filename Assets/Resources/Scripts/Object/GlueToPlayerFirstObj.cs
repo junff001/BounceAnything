@@ -20,8 +20,8 @@ public class GlueToPlayerFirstObj : MonoBehaviour
 
     private GlueableObj glueableObj = null;
     private Collider myCol = null;
-    
-    
+
+
 
     private Vector3 originPos = Vector3.zero;
 
@@ -125,12 +125,18 @@ public class GlueToPlayerFirstObj : MonoBehaviour
             transform.SetParent(gameManager.PlayerFirstObjScript.transform);
             gameObject.layer = transform.parent.gameObject.layer;
 
-            if(gameManager.PlayerFirstObjScript.MyCol.radius < distance) // 잰 거리가 이동용으로 쓰이는 SphereCollider의 radius값보다 크면,
+            if (gameManager.PlayerFirstObjScript.MyCol.radius < distance) // 잰 거리가 이동용으로 쓰이는 SphereCollider의 radius값보다 크면,
             {
                 gameManager.PlayerFirstObjScript.PlusRadius += distance - gameManager.PlayerFirstObjScript.MyCol.radius; // distance와 SphereCollider의 radius값의 차이만큼 PlusRadius에 값을 더해준다.
             }                                                                                                            // radius는 PlusRadius의 값만큼 서서히 증가한다.
 
-            gameManager.PlayerFirstObjScript.PlusPlayerTotalSize += glueableObj.SizePlus; // PlusPlayerTotalSize는 PlusRadius와 동일한 역할을 한다.
+            if (glueableObj != null)
+            {
+                float upSize = glueableObj.SizePlus;
+                gameManager.PlayerFirstObjScript.PlusPlayerTotalSize += upSize; // PlusPlayerTotalSize는 PlusRadius와 동일한 역할을 한다.
+                gameManager.SpawnGetScoreText(upSize);
+            }
+            
             enabled = false;
         }
     }
