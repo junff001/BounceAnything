@@ -34,7 +34,7 @@ public class GetScoreTextScript : MonoBehaviour
 
             text.color = new Vector4(1f, 1f, 1f, Mathf.Lerp(0, 1, fadeOutTime / fadeOutTimer));
 
-            currentPosition = Vector2.MoveTowards(currentPosition, transform.up, moveSpeed * Time.deltaTime);
+            currentPosition = Vector2.MoveTowards(currentPosition, currentPosition + Vector2.up, moveSpeed * Time.deltaTime);
         }
         else
         {

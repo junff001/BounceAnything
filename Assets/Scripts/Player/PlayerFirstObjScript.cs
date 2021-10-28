@@ -34,6 +34,13 @@ public class PlayerFirstObjScript : MonoBehaviour
         get { return plusRadius; }
         set { plusRadius = value; }
     }
+
+    private float pastePlusRadius;
+    public float PastePlusRadius
+    {
+        get { return pastePlusRadius; }
+    }
+
     void Start()
     {
         gameManager = GameManager.Instance;
@@ -111,7 +118,7 @@ public class PlayerFirstObjScript : MonoBehaviour
     {
         if (plusRadius > 0f)
         {
-            float pastePlusRadius = plusRadius;
+            pastePlusRadius = plusRadius;
 
             plusRadius -= Time.fixedDeltaTime;
             myCol.radius += Time.fixedDeltaTime;
@@ -121,6 +128,9 @@ public class PlayerFirstObjScript : MonoBehaviour
                 myCol.radius += pastePlusRadius - Time.fixedDeltaTime;
                 plusRadius = 0f;
             }
+
+            //float addValue = myCol.radius - 0.5f;
+            //myCol.center = new Vector3(0, addValue / 2, 0);
         }
         else
         {
