@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sizeOrigin: 22
-  sizePlus: 0.1
+  sizePlus: 0.04
   socreUp: 0
 --- !u!64 &-1440250863223751353
 MeshCollider:
