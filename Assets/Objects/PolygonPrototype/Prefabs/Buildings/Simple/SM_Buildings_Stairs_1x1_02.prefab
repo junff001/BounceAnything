@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33051925884652270}
   - component: {fileID: 23638741415283002}
   - component: {fileID: 64976985751251626}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: SM_Buildings_Stairs_1x1_02
   m_TagString: Ground
   m_Icon: {fileID: 0}

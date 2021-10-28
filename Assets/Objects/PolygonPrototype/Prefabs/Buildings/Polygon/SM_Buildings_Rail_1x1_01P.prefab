@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33237326434418454}
   - component: {fileID: 23159780552988896}
   - component: {fileID: 64380068696646788}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: SM_Buildings_Rail_1x1_01P
   m_TagString: Ground
   m_Icon: {fileID: 0}

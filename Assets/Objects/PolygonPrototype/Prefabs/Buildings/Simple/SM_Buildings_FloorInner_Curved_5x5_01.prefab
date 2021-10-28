@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33281317644252544}
   - component: {fileID: 23845308398113212}
   - component: {fileID: 64539162835400262}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: SM_Buildings_FloorInner_Curved_5x5_01
   m_TagString: Ground
   m_Icon: {fileID: 0}

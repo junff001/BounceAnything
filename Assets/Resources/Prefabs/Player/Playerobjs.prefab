@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 448
   moveSpeed: 3
   rotationSpeed: 3
   jumpHeight: 0

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33125426663443366}
   - component: {fileID: 23751635992227374}
   - component: {fileID: 64973747109054902}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: SM_Buildings_FloorAngle_1x1_01
   m_TagString: Ground
   m_Icon: {fileID: 0}

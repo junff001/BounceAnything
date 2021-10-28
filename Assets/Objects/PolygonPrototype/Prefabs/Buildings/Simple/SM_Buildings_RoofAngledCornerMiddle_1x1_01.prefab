@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33435459176274138}
   - component: {fileID: 23106014938668342}
   - component: {fileID: 64879304097073184}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: SM_Buildings_RoofAngledCornerMiddle_1x1_01
   m_TagString: Ground
   m_Icon: {fileID: 0}

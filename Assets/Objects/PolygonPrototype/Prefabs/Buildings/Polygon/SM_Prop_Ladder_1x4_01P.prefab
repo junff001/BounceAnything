@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33293470350792072}
   - component: {fileID: 23757168947268328}
   - component: {fileID: 64990484014130066}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: SM_Prop_Ladder_1x4_01P
   m_TagString: Ground
   m_Icon: {fileID: 0}

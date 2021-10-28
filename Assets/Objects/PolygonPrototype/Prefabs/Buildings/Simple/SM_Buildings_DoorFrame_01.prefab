@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33766109078131438}
   - component: {fileID: 23266417652569830}
   - component: {fileID: 64729361167826086}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: SM_Buildings_DoorFrame_01
   m_TagString: Ground
   m_Icon: {fileID: 0}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33761075085733650}
   - component: {fileID: 23701382472640562}
   - component: {fileID: 64766888326642750}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: SM_Buildings_Column_2x3_01
   m_TagString: Ground
   m_Icon: {fileID: 0}

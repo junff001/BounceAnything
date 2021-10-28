@@ -4,6 +4,47 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public static class ScriptHelper
+{
+    public static List<T> ToList<T>(this IEnumerable<T> list)
+    {
+        List<T> returnList = new List<T>();
+
+        foreach (T item in list)
+        {
+            returnList.Add(item);
+        }
+
+        return returnList;
+    }
+    public static List<T> ToList<T>(this IEnumerable<T> list, Action<T> action)
+    {
+        List<T> returnList = new List<T>();
+
+        foreach (T item in list)
+        {
+            returnList.Add(item);
+        }
+
+        return returnList;
+    }
+    public static List<T> SumList<T>(this IEnumerable<T> list1, IEnumerable<T> list2)
+    {
+        List<T> returnList = new List<T>();
+
+        foreach (T item in list1)
+        {
+            returnList.Add(item);
+        }
+
+        foreach (T item in list2)
+        {
+            returnList.Add(item);
+        }
+
+        return returnList;
+    }
+}
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance = null;
@@ -252,7 +293,7 @@ public class GameManager : MonoBehaviour
             text.text = "+ " + score;
 
             text.rectTransform.position = getScoreTextTrm.position;
-            
+
             temp.SetActive(true);
         }
         else

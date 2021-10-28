@@ -9,7 +9,7 @@ public class BallController : MonoBehaviour
     private Rigidbody rigid = null;
 
     [SerializeField]
-    private LayerMask whatIsGround;
+    private LayerMask whatIsMovable;
 
     [SerializeField]
     private float moveSpeed = 2f;
@@ -43,7 +43,7 @@ public class BallController : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.collider.CompareTag("Ground") || 1 << collision.gameObject.layer == whatIsGround)
+        if (collision.collider.CompareTag("Ground") || 1 << collision.gameObject.layer == whatIsMovable)
         {
             isGround = true;
         }   
@@ -51,7 +51,7 @@ public class BallController : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.collider.CompareTag("Ground") || 1 << collision.gameObject.layer == whatIsGround)
+        if (collision.collider.CompareTag("Ground") || 1 << collision.gameObject.layer == whatIsMovable)
         {
             isGround = false;
         }

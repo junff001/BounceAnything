@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33417690122741950}
   - component: {fileID: 23313093580700522}
   - component: {fileID: 64145788043930196}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: SM_Buildings_Ramp_20_1x1_01
   m_TagString: Ground
   m_Icon: {fileID: 0}

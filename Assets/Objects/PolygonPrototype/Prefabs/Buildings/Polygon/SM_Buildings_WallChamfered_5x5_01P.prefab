@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33816360305397260}
   - component: {fileID: 23263434779724408}
   - component: {fileID: 64018286834433040}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: SM_Buildings_WallChamfered_5x5_01P
   m_TagString: Ground
   m_Icon: {fileID: 0}

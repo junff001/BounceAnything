@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33837606549662942}
   - component: {fileID: 23190637497344010}
   - component: {fileID: 64236083149484914}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: SM_Buildings_WallWindow_2x3_01
   m_TagString: Ground
   m_Icon: {fileID: 0}

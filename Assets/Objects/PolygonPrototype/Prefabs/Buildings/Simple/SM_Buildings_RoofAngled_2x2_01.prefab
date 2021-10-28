@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33510145851894160}
   - component: {fileID: 23684200591164778}
   - component: {fileID: 64186136108372878}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: SM_Buildings_RoofAngled_2x2_01
   m_TagString: Ground
   m_Icon: {fileID: 0}

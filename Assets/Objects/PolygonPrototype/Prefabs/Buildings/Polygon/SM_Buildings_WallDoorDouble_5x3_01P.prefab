@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33500160971996690}
   - component: {fileID: 23118534096776810}
   - component: {fileID: 64515181103858382}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: SM_Buildings_WallDoorDouble_5x3_01P
   m_TagString: Ground
   m_Icon: {fileID: 0}
