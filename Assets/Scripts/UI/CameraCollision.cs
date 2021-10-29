@@ -26,21 +26,23 @@ public class CameraCollision : MonoBehaviour
             Ray ray = new Ray();
             List<RaycastHit> hits = new List<RaycastHit>();
 
+            Vector3 palyerPos = gameManager.PlayerFirstObjScript.transform.position;
+
             Vector3[] origins = new Vector3[]
             {
-                transform.position,
-                transform.position + Vector3.left * offset,
-                transform.position + Vector3.right * offset,
-                transform.position + Vector3.up * offset,
-                transform.position + Vector3.down * offset,
-                transform.position + Vector3.forward * offset,
-                transform.position + Vector3.back * offset
+                palyerPos,
+                palyerPos + Vector3.left * offset,
+                palyerPos + Vector3.right * offset,
+                palyerPos + Vector3.up * offset,
+                palyerPos + Vector3.down * offset,
+                palyerPos + Vector3.forward * offset,
+                palyerPos + Vector3.back * offset
             };
 
             foreach (Vector3 origin in origins)
             {
                 ray.origin = origin;
-                ray.direction = gameManager.PlayerFirstObjScript.transform.position - origin;
+                ray.direction = transform.position - origin;
 
                 Debug.DrawRay(ray.origin, ray.direction * Vector3.Distance(ray.origin, ray.direction), Color.blue, 0f);
 
