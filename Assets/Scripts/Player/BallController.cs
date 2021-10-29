@@ -21,7 +21,7 @@ public class BallController : MonoBehaviour
     private const float maxSpeed = 11f;
 
     private float totalTime = 0f;
-    private bool isGround;
+    private bool canMove;
     
     void Start()
     {
@@ -43,23 +43,23 @@ public class BallController : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.collider.CompareTag("Ground") || 1 << collision.gameObject.layer == whatIsMovable)
+        if (collision.collider.CompareTag("Movable"))
         {
-            isGround = true;
+            canMove = true;
         }   
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.collider.CompareTag("Ground") || 1 << collision.gameObject.layer == whatIsMovable)
+        if (collision.collider.CompareTag("Movable"))
         {
-            isGround = false;
+            canMove = false;
         }
     }
 
     private void BallMove()
     {
-        if (isGround) //Ball 이동관련
+        if (canMove) //Ball 이동관련
         {
             if (playerInput.XMove > 0)
             {
