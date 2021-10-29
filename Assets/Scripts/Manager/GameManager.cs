@@ -264,13 +264,25 @@ public class GameManager : MonoBehaviour
 
         cursorTrm.position = Input.mousePosition;
 
-        if (Input.GetMouseButton(0))
+        if (!gameStart)
         {
-            cursorImg.sprite = newCursor_Clicked;
+            if(!cursorImg.gameObject.activeSelf)
+            {
+                cursorImg.gameObject.SetActive(true);
+            }
+            
+            if (Input.GetMouseButton(0))
+            {
+                cursorImg.sprite = newCursor_Clicked;
+            }
+            else
+            {
+                cursorImg.sprite = newCursor;
+            }
         }
         else
         {
-            cursorImg.sprite = newCursor;
+            cursorImg.gameObject.SetActive(false);
         }
 
         if (Input.GetKeyUp(KeyCode.R))

@@ -44,7 +44,7 @@ public class CameraCollision : MonoBehaviour
                 ray.origin = origin;
                 ray.direction = transform.position - origin;
 
-                Debug.DrawRay(ray.origin, ray.direction * Vector3.Distance(ray.origin, ray.direction), Color.blue, 0f);
+                Debug.DrawRay(ray.origin, ray.direction * Vector3.Distance(ray.origin, ray.direction / offset), Color.blue, 0f);
 
                 hits = hits.SumList(RayCheck(ray));
             }
@@ -65,7 +65,7 @@ public class CameraCollision : MonoBehaviour
     private List<RaycastHit> RayCheck(Ray ray)
     {
         List<RaycastHit> hits;
-        float distance = Vector3.Distance(ray.origin, ray.direction);
+        float distance = Vector3.Distance(ray.origin, ray.direction) / offset;
 
         hits = Physics.RaycastAll(ray, distance, whatIsDisappear).ToList<RaycastHit>();
 
