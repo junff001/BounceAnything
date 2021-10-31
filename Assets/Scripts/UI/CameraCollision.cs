@@ -22,7 +22,7 @@ public class CameraCollision : MonoBehaviour
         if (gameManager.PlayerFirstObjScript != null)
         {
             Ray ray = new Ray();
-            List<RaycastHit> hits = new List<RaycastHit>();
+            bool hit = false;
 
             Vector3 palyerPos = gameManager.PlayerFirstObjScript.transform.position;
 
@@ -44,22 +44,20 @@ public class CameraCollision : MonoBehaviour
 
                 Debug.DrawRay(ray.origin, ray.direction * Vector3.Distance(ray.origin, ray.direction / offset), Color.blue, 0f);
 
-                hits = hits.SumList(RayCheck(ray));
+                if(RayCheck(ray))
+                {
+                    hit = true;
+                }
             }
 
-            hits = hits.Distinct().ToList();
-
-            ScreenManager.Instance.dontShowWall = hits.Count > 0;
+            ScreenManager.Instance.dontShowWall = hit;
         }
     }
 
-    private List<RaycastHit> RayCheck(Ray ray)
+    private bool RayCheck(Ray ray)
     {
-        List<RaycastHit> hits;
         float distance = Vector3.Distance(ray.origin, ray.direction) / offset;
 
-        hits = Physics.RaycastAll(ray, distance, whatIsDisappear).ToList<RaycastHit>();
-
-        return hits;
+        return Physics.Raycast(ray, distance, whatIsDisappear);
     }
 }
