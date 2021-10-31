@@ -47,6 +47,8 @@ public class CameraCollision : MonoBehaviour
                 if(RayCheck(ray))
                 {
                     hit = true;
+
+                    break;
                 }
             }
 
