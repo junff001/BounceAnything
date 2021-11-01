@@ -44,6 +44,25 @@ public static class ScriptHelper
 
         return returnList;
     }
+    public static int GetLayer<LayerMask>(this int mask) // GetLayerMask를 통해 얻는 layer값을 gameObject.layer에 대입할 때 이 함수로 값을 변환하여 대입시킨다.
+    {
+        int result = 0;
+        int a = mask;
+
+        while(true)
+        {
+            a /= 2;
+
+            result++;
+
+            if(a == 1)
+            {
+                break;
+            }
+        }
+
+        return result;
+    }
 }
 
 public class GameManager : MonoBehaviour
