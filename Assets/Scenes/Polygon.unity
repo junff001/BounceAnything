@@ -17405,7 +17405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatIsDisappear:
     serializedVersion: 2
-    m_Bits: 375
+    m_Bits: 887
   offset: 0.5
 --- !u!114 &843682372
 MonoBehaviour:
