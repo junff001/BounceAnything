@@ -9,6 +9,8 @@ public class CameraCollision : MonoBehaviour
 
     [SerializeField]
     private LayerMask whatIsDisappear;
+
+    private List<RaycastHit> pasteHits = new List<RaycastHit>();
     [SerializeField]
     private float offset = 2f;
 
@@ -22,7 +24,7 @@ public class CameraCollision : MonoBehaviour
         if (gameManager.PlayerFirstObjScript != null)
         {
             Ray ray = new Ray();
-            bool hit = false;
+            List<RaycastHit> hits = new List<RaycastHit>();
 
             Vector3 palyerPos = gameManager.PlayerFirstObjScript.transform.position;
 
@@ -44,22 +46,46 @@ public class CameraCollision : MonoBehaviour
 
                 Debug.DrawRay(ray.origin, ray.direction * Vector3.Distance(ray.origin, ray.direction / offset), Color.blue, 0f);
 
-                if(RayCheck(ray))
-                {
-                    hit = true;
+                hits = hits.SumList(RayCheck(ray));
+            }
 
-                    break;
+            hits = hits.Distinct().ToList();
+
+            foreach(RaycastHit hit in pasteHits)
+            {
+                bool isIn = false;
+
+                foreach(RaycastHit hit2 in hits)
+                {
+                    if(hit.collider.gameObject == hit2.collider.gameObject)
+                    {
+                        isIn = true;
+
+                        break;
+                    }
+                }
+
+                if(!isIn)
+                {
+                    hit.collider.gameObject.layer = hit.collider.gameObject.layer = LayerMask.GetMask("WALL").GetLayer<LayerMask>();
                 }
             }
 
-            ScreenManager.Instance.dontShowWall = hit;
+            foreach(RaycastHit hit in hits)
+            {
+                hit.collider.gameObject.layer = LayerMask.GetMask("DISAPEARWALL").GetLayer<LayerMask>();
+            }
+
+            pasteHits = hits;
+            
+            ScreenManager.Instance.dontShowWall = hits.Count > 0;
         }
     }
 
-    private bool RayCheck(Ray ray)
+    private List<RaycastHit> RayCheck(Ray ray)
     {
         float distance = Vector3.Distance(ray.origin, ray.direction) / offset;
 
-        return Physics.Raycast(ray, distance, whatIsDisappear);
+        return Physics.RaycastAll(ray, distance, whatIsDisappear).ToList<RaycastHit>();
     }
 }

@@ -14792,7 +14792,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 255
+    m_Bits: 511
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -38537,25 +38537,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 637d87901f995a64abcfcae1a8336b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 4171478535224607954, guid: 0c754999967ff734bb8d5408c7aa8db0, type: 3}
+  StartPanel: {fileID: 306294430}
+  EndPanel: {fileID: 2049258158}
+  GetScoreText: {fileID: 3778388136266393752, guid: a0b839be6ba318444b55e70f65b6dbd5, type: 3}
+  playerSpawnTrm: {fileID: 1776480567}
+  cursorTrm: {fileID: 1410812052}
+  getScoreTextTrm: {fileID: 1390180384}
+  cursorImg: {fileID: 1410812053}
+  scoreText: {fileID: 777968752}
+  gameClearText: {fileID: 1692763291}
+  clearTimeText: {fileID: 90933252}
+  clearScoreText: {fileID: 1968893698}
   whatIsPlayerFirstObj:
     serializedVersion: 2
     m_Bits: 8
   whatIsGlueableObj:
     serializedVersion: 2
     m_Bits: 128
-  cursorTrm: {fileID: 1410812052}
-  getScoreTextTrm: {fileID: 1390180384}
-  cursorImg: {fileID: 1410812053}
-  playerPrefab: {fileID: 2492716001113272907, guid: 82494b345f5542445bba04f831bbf0f5, type: 3}
-  playerSpawnTrm: {fileID: 1776480567}
   glueableObjParent: {fileID: 1916320715}
-  StartPanel: {fileID: 306294430}
-  EndPanel: {fileID: 2049258158}
-  GetScoreText: {fileID: 3778388136266393752, guid: a0b839be6ba318444b55e70f65b6dbd5, type: 3}
-  scoreText: {fileID: 777968752}
-  gameClearText: {fileID: 1692763291}
-  clearTimeText: {fileID: 90933252}
-  clearScoreText: {fileID: 1968893698}
   targetScore: 50
 --- !u!4 &1776480567
 Transform:

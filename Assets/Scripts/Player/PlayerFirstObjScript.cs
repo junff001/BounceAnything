@@ -41,11 +41,16 @@ public class PlayerFirstObjScript : MonoBehaviour
         get { return pastePlusRadius; }
     }
 
+    private void Awake()
+    {
+
+        myCol = GetComponent<SphereCollider>();
+    }
+
     void Start()
     {
         gameManager = GameManager.Instance;
 
-        myCol = GetComponent<SphereCollider>();
 
         playerTotalSize = playerSizeOrigin;
         //playerTotalSize = myCol.bounds.extents.x * myCol.bounds.extents.y * myCol.bounds.extents.z; 
