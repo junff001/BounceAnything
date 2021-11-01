@@ -137,6 +137,8 @@ public class GlueToPlayerFirstObj : MonoBehaviour
                 gameManager.SpawnGetScoreText(upSize);
             }
             
+            myCol.isTrigger = true;
+            
             enabled = false;
         }
     }
