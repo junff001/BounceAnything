@@ -64,8 +64,66 @@ public static class ScriptHelper
         return result;
     }
 }
+
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject playerPrefab = null;
+    [SerializeField]
+    private GameObject StartPanel = null;
+    [SerializeField]
+    private GameObject EndPanel = null;
+    [SerializeField]
+    private GameObject GetScoreText = null;
+    [SerializeField]
+    private Transform playerSpawnTrm = null;
+    [SerializeField]
+    private RectTransform cursorTrm = null;
+    [SerializeField]
+    private RectTransform getScoreTextTrm = null;
+    [SerializeField]
+    private Image cursorImg = null;
+    [SerializeField]
+    private Text scoreText = null;
+    [SerializeField]
+    private Text gameClearText = null;
+    [SerializeField]
+    private Text clearTimeText = null;
+    [SerializeField]
+    private Text clearScoreText = null;
+    [SerializeField]
+    private LayerMask whatIsPlayerFirstObj;
+    public LayerMask WhatisPlayerFirstObj
+    {
+        get { return whatIsPlayerFirstObj; }
+    }
+    [SerializeField]
+    private LayerMask whatIsGlueableObj;
+    public LayerMask WhatIsGlueableObj
+    {
+        get { return whatIsGlueableObj; }
+    }
+    [SerializeField]
+    private Transform glueableObjParent = null;
+    public Transform GlueableObjParent
+    {
+        get { return glueableObjParent; }
+    }
+    [SerializeField]
+    private float targetScore = 1300f;
+    public float TargetScore
+    {
+        get { return targetScore; }
+        set { targetScore = value; }
+    }
+
+    private PoolManager poolManager = null;
+    private Sprite newCursor = null;
+    private Sprite newCursor_Clicked = null;
+    private int totalMin = 0;
+    private float totalSec = 0f;
+    private bool gameClear = false;
+
     private static GameManager instance = null;
     public static GameManager Instance
     {
@@ -85,95 +143,12 @@ public class GameManager : MonoBehaviour
             return instance;
         }
     }
-
-    private PoolManager poolManager = null;
-
-    [SerializeField]
-    private LayerMask whatIsPlayerFirstObj;
-    public LayerMask WhatisPlayerFirstObj
-    {
-        get { return whatIsPlayerFirstObj; }
-    }
-    [SerializeField]
-    private LayerMask whatIsGlueableObj;
-    public LayerMask WhatIsGlueableObj
-    {
-        get { return whatIsGlueableObj; }
-    }
-
-    private Sprite newCursor = null;
-    private Sprite newCursor_Clicked = null;
-    [SerializeField]
-    private RectTransform cursorTrm = null;
-    [SerializeField]
-    private RectTransform getScoreTextTrm = null;
-    [SerializeField]
-    private Image cursorImg = null;
-
-    [SerializeField]
-    private GameObject playerPrefab = null;
     private GameObject currentPlayerObj = null;
     public GameObject CurrentPlayerObj
     {
         get { return currentPlayerObj; }
         set { currentPlayerObj = value; }
     }
-
-    [SerializeField]
-    private Transform playerSpawnTrm = null;
-    [SerializeField]
-    private Transform glueableObjParent = null;
-    public Transform GlueableObjParent
-    {
-        get { return glueableObjParent; }
-    }
-
-    [SerializeField]
-    private GameObject StartPanel = null;
-    [SerializeField]
-    private GameObject EndPanel = null;
-    [SerializeField]
-    private GameObject GetScoreText = null;
-
-    [SerializeField]
-    private Text scoreText = null;
-    [SerializeField]
-    private Text gameClearText = null;
-    [SerializeField]
-    private Text clearTimeText = null;
-    [SerializeField]
-    private Text clearScoreText = null;
-
-    private bool gameStart = false;
-    public bool GameStart
-    {
-        get { return gameStart; }
-    }
-
-    private bool gameClear = false;
-
-    private float score = 0f;
-    public float Score
-    {
-        get { return score; }
-        set
-        {
-            score = value;
-            scoreText.text = "Score: " + string.Format("{0:0.##}", score);
-        }
-    }
-
-    [SerializeField]
-    private float targetScore = 1300f;
-    public float TargetScore
-    {
-        get { return targetScore; }
-        set { targetScore = value; }
-    }
-
-    private float totalSec = 0f;
-    private int totalMin = 0;
-
     private PlayerFirstObjScript playerFirstObjScript = null;
     public PlayerFirstObjScript PlayerFirstObjScript
     {
@@ -185,6 +160,21 @@ public class GameManager : MonoBehaviour
         {
             playerFirstObjScript = value;
         }
+    }
+    private float score = 0f;
+    public float Score
+    {
+        get { return score; }
+        set
+        {
+            score = value;
+            scoreText.text = "Score: " + string.Format("{0:0.##}", score);
+        }
+    }
+    private bool gameStart = false;
+    public bool GameStart
+    {
+        get { return gameStart; }
     }
 
     public event Action StartGame; // 게임이 시작할 때 실행됌. 여러 수치를 초기화 할 때 사용중
@@ -262,6 +252,7 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
+               
         // if(Input.GetKeyUp)
         if (gameStart)
         {
@@ -309,7 +300,19 @@ public class GameManager : MonoBehaviour
             RespwnPlayer();
         }
     }
-    public void SpawnGetScoreText(float score)
+
+    private void aa()
+    {
+        if (0 == 1) {
+            
+        }
+    
+    }
+
+    private void F()
+    {
+    }
+	public void SpawnGetScoreText(float score)
     {
         if (poolManager.TextObjQueue.Count > 0)
         {
