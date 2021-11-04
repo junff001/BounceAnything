@@ -47,7 +47,7 @@ public class BallController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerFirst = GetComponent<PlayerFirstObjScript>();
         startPos = transform.position;
-
+        radius = playerFirst.MyCol.radius;
     }
 
     void FixedUpdate() 
@@ -60,10 +60,10 @@ public class BallController : MonoBehaviour
         CanvasFollow(sizeCanvas);
         CanvasFollow(sizeNumCanvas);
         startPos = transform.position; // 함수가 두번 실행 됨으로 반복 코드는 함수에서 따로 빼준다.
+        radius = playerFirst.MyCol.radius;
 
         ImageSizeUp(sizeCanvas);
         ImageSizeUp(sizeNumCanvas);
-        Debug.Log(sizeNumCanvas.localScale);
     }
 
     private void OnCollisionStay(Collision collision)
@@ -100,11 +100,12 @@ public class BallController : MonoBehaviour
     private void CanvasFollow(RectTransform canvas) // 사이즈 이미지 함수
     {
         Vector3 delta = transform.position - startPos;  // 현재 공의 위치와 이전 공의 위치의 사잇값
+        float colDelta = playerFirst.MyCol.radius - radius;
 
         Vector3 pos = canvas.position; // 현재 캔버스 위치
         pos.x += delta.x; //사잇값 만큼 더하기
         pos.z += delta.z; //사잇값 만큼 더하기
-        pos.y += delta.y + playerFirst.MyCol.radius; // 위치 + 공과 캔버스의 높이
+        pos.y += delta.y - colDelta; // 위치 + 공과 캔버스의 높이
 
         canvas.position = pos;
     }
