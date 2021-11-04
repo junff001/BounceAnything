@@ -16,10 +16,10 @@ public class BallController : MonoBehaviour
     private LayerMask whatIsMovable;
     [SerializeField]
     private float moveSpeed = 2f;
-    public float MoveSpeed { get; set;}
+    public float MoveSpeed { get { return moveSpeed; } set { moveSpeed = value; } }
     [SerializeField]
     private float rotationSpeed = 3f;
-    public float RotationSpeed { get; set;}
+    public float RotationSpeed { get { return rotationSpeed; } set { rotationSpeed = value; } }
     [SerializeField]
     private float jumpHeight = 10f;
     [SerializeField]
@@ -39,7 +39,8 @@ public class BallController : MonoBehaviour
     {
         gameManager = GameManager.Instance;
 
-        gameManager.RespwnPlayer += () => {
+        gameManager.RespwnPlayer += () =>
+        {
             rigid.velocity = Vector3.zero;
         };
 
@@ -50,7 +51,7 @@ public class BallController : MonoBehaviour
         radius = playerFirst.MyCol.radius;
     }
 
-    void FixedUpdate() 
+    void FixedUpdate()
     {
         BallMove();
     }
@@ -68,28 +69,38 @@ public class BallController : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.collider.CompareTag("Movable")) {
+        if (collision.collider.CompareTag("Movable"))
+        {
             canMove = true;
-        }   
+        }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.collider.CompareTag("Movable")) {
+        if (collision.collider.CompareTag("Movable"))
+        {
             canMove = false;
         }
     }
 
-    private void BallMove() 
+    private void BallMove()
     {
-        if (canMove) { //Ball 이동관련
-            if (playerInput.XMove > 0) {
+        if (canMove)
+        { //Ball 이동관련
+            if (playerInput.XMove > 0)
+            {
                 rigid.AddForce(Camera.main.gameObject.transform.forward * moveSpeed, ForceMode.Impulse);
-            } else if (playerInput.XMove < 0) {
+            }
+            else if (playerInput.XMove < 0)
+            {
                 rigid.AddForce(-Camera.main.gameObject.transform.forward * moveSpeed, ForceMode.Impulse);
-            } if (playerInput.ZMove > 0) {
+            }
+            if (playerInput.ZMove > 0)
+            {
                 rigid.AddForce(Camera.main.gameObject.transform.right * moveSpeed, ForceMode.Impulse);
-            } else if (playerInput.ZMove < 0) {
+            }
+            else if (playerInput.ZMove < 0)
+            {
                 rigid.AddForce(-Camera.main.gameObject.transform.right * moveSpeed, ForceMode.Impulse);
             }
             rigid.velocity = Vector3.ClampMagnitude(rigid.velocity, maxSpeed); //공 속도제한
@@ -114,10 +125,10 @@ public class BallController : MonoBehaviour
     {
         Vector3 scale = image.transform.localScale;
         float radius = playerFirst.MyCol.radius;
-        
+
         scale.x = radius;
         scale.y = radius;
-        
+
         image.transform.localScale = scale;
     }
 
