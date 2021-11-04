@@ -15,6 +15,8 @@ public class BallFeverTimeScript : MonoBehaviour
     [Header("공이 피버모드가 됐을 때 피버 게이지가 줄어드는 속도")]
     [SerializeField]
     private float feverMinusSpeed = 1.5f;
+    [SerializeField]
+    private float feverUpSpeed = 2f;
 
     private float fever = 0f;
     private float plusFever = 0f;
@@ -50,7 +52,7 @@ public class BallFeverTimeScript : MonoBehaviour
             ballController.MoveSpeed = feverSpeed;
 
             plusFever = 0f;
-            fever = 0f;
+            fever = feverMax;
         }
     }
 
@@ -64,6 +66,7 @@ public class BallFeverTimeScript : MonoBehaviour
             {
                 fever = 0f;
 
+                ballController.MoveSpeed = playerSpeedOrigin;
                 isFever = false;
             }
         }
@@ -71,8 +74,8 @@ public class BallFeverTimeScript : MonoBehaviour
         {
             if (plusFever > 0f)
             {
-                plusFever -= Time.deltaTime;
-                fever += Time.deltaTime;
+                plusFever -= Time.deltaTime * feverUpSpeed;
+                fever += Time.deltaTime * feverUpSpeed;
 
                 if (plusFever <= 0f)
                 {
