@@ -39,6 +39,7 @@ public class GlueToPlayerFirstObj : MonoBehaviour
         }
     }
     private float moveTimer = 0f;
+    private bool sizeUp = false;
 
     private void Awake() 
     {
@@ -114,11 +115,13 @@ public class GlueToPlayerFirstObj : MonoBehaviour
     {
         if (1 << other.gameObject.layer == LayerMask.GetMask("Player")) // 플레이어에게로 날아가는 오브젝트가 플레이어와 충돌(이동에 쓰이는 구 형의 SphereCollider가 아닌, IsTrigger == true인 Collider와 충돌 체크
         {
-            if (!other.isTrigger)
+            if (!other.isTrigger || sizeUp)
             {
                 return;
             }
-
+            
+            sizeUp = true;
+            
             float distance = Vector3.Distance(transform.position, other.transform.position); // 붙었을 때 PlayerObject의 중심까지의 거리를 잰다.
 
             transform.SetParent(gameManager.PlayerFirstObjScript.transform);
