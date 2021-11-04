@@ -40,13 +40,12 @@ public class GlueToPlayerFirstObj : MonoBehaviour
     }
     private float moveTimer = 0f;
 
-    void Start()
+    private void Awake() 
     {
         glueableObj = GetComponent<GlueableObj>();
         myCol = GetComponent<Collider>();
 
         myCol.isTrigger = true;
-
         originPos = transform.position;
     }
 
