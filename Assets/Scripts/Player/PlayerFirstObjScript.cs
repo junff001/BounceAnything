@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerFirstObjScript : MonoBehaviour
 {
@@ -26,7 +27,11 @@ public class PlayerFirstObjScript : MonoBehaviour
     public float PlusPlayerTotalSize
     {
         get { return plusTotalSize; }
-        set { plusTotalSize = value; }
+        set
+        {
+            WhenSizeUp(value - plusTotalSize);
+            plusTotalSize = value;
+        }
     }
     private float plusRadius = 0f;
     public float PlusRadius
@@ -40,11 +45,16 @@ public class PlayerFirstObjScript : MonoBehaviour
     {
         get { return pastePlusRadius; }
     }
+    public event Action<float> WhenSizeUp;
 
     private void Awake()
     {
-
         myCol = GetComponent<SphereCollider>();
+
+        WhenSizeUp = (e) =>
+        {
+            //Debug.Log("aaaaaaaaaaaaaaaaaaaaaa"+e);
+        };
     }
 
     void Start()
@@ -54,7 +64,7 @@ public class PlayerFirstObjScript : MonoBehaviour
 
         playerTotalSize = playerSizeOrigin;
         //playerTotalSize = myCol.bounds.extents.x * myCol.bounds.extents.y * myCol.bounds.extents.z; 
-        // 모양에 따라 알맞는 크기를 구하기 힘들다고 판단, 크기를 구하는 식을 하나로 통일한다;
+        //// 모양에 따라 알맞는 크기를 구하기 힘들다고 판단, 크기를 구하는 식을 하나로 통일한다;
     }
 
     void FixedUpdate()
@@ -64,7 +74,7 @@ public class PlayerFirstObjScript : MonoBehaviour
 
         gameManager.Score = playerTotalSize; // 현재점수 갱신
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         GlueableObj glueableObj = other.transform.GetComponent<GlueableObj>();
