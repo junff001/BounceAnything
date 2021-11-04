@@ -49,14 +49,12 @@ public static class ScriptHelper
         int result = 0;
         int a = mask;
 
-        while(true)
-        {
+        while (true) {
             a /= 2;
 
             result++;
 
-            if(a == 1)
-            {
+            if (a == 1) {
                 break;
             }
         }

@@ -16,8 +16,10 @@ public class BallController : MonoBehaviour
     private LayerMask whatIsMovable;
     [SerializeField]
     private float moveSpeed = 2f;
+    public float MoveSpeed { get; set;}
     [SerializeField]
     private float rotationSpeed = 3f;
+    public float RotationSpeed { get; set;}
     [SerializeField]
     private float jumpHeight = 10f;
     [SerializeField]
@@ -28,8 +30,10 @@ public class BallController : MonoBehaviour
     private float yDelta;
     private float ColRadius;
     public RectTransform sizeCanvas;
+    public RectTransform sizeNumCanvas;
     public Image sizeImage;
     private Vector3 startPos;
+    private float radius;
 
     void Start()
     {
@@ -43,7 +47,6 @@ public class BallController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerFirst = GetComponent<PlayerFirstObjScript>();
         startPos = transform.position;
-        yDelta = transform.position.y - sizeCanvas.position.y; // 공과 캔버스의 사잇값 (높이)
 
     }
 
@@ -54,8 +57,13 @@ public class BallController : MonoBehaviour
 
     void Update()
     {
-        CanvasFollow();
-        ImageSizeUp();
+        CanvasFollow(sizeCanvas);
+        CanvasFollow(sizeNumCanvas);
+        startPos = transform.position; // 함수가 두번 실행 됨으로 반복 코드는 함수에서 따로 빼준다.
+
+        ImageSizeUp(sizeCanvas);
+        ImageSizeUp(sizeNumCanvas);
+        Debug.Log(sizeNumCanvas.localScale);
     }
 
     private void OnCollisionStay(Collision collision)
@@ -89,29 +97,27 @@ public class BallController : MonoBehaviour
         }
     }
 
-    private void CanvasFollow()
+    private void CanvasFollow(RectTransform canvas) // 사이즈 이미지 함수
     {
-       
         Vector3 delta = transform.position - startPos;  // 현재 공의 위치와 이전 공의 위치의 사잇값
-        
-        Vector3 pos = sizeCanvas.position; // 현재 캔버스 위치
+
+        Vector3 pos = canvas.position; // 현재 캔버스 위치
         pos.x += delta.x; //사잇값 만큼 더하기
         pos.z += delta.z; //사잇값 만큼 더하기
-        pos.y += delta.y; // 위치 + 공과 캔버스의 높이
-        
-        sizeCanvas.position = pos;
-        startPos = transform.position; // 반복
+        pos.y += delta.y + playerFirst.MyCol.radius; // 위치 + 공과 캔버스의 높이
+
+        canvas.position = pos;
     }
 
-    private void ImageSizeUp()
+    private void ImageSizeUp(RectTransform image)
     {
-        Vector3 scale = sizeImage.transform.localScale;
+        Vector3 scale = image.transform.localScale;
         float radius = playerFirst.MyCol.radius;
-
+        
         scale.x = radius;
         scale.y = radius;
-
-        sizeImage.transform.localScale = scale;
+        
+        image.transform.localScale = scale;
     }
 
     private void SizeCheck()
