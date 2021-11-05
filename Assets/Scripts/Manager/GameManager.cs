@@ -76,6 +76,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Transform playerSpawnTrm = null;
     [SerializeField]
+    public Transform respawnTrm = null;
+    [SerializeField]
     private RectTransform cursorTrm = null;
     [SerializeField]
     private RectTransform getScoreTextTrm = null;
@@ -121,6 +123,8 @@ public class GameManager : MonoBehaviour
     private int totalMin = 0;
     private float totalSec = 0f;
     private bool gameClear = false;
+
+    private BallController ballCon;
 
     private static GameManager instance = null;
     public static GameManager Instance
@@ -195,7 +199,8 @@ public class GameManager : MonoBehaviour
             gameStart = true;
             gameClear = false;
 
-            currentPlayerObj = Instantiate(playerPrefab, playerSpawnTrm);
+            currentPlayerObj = Instantiate(playerPrefab, playerSpawnTrm); // 게임 매니저 오브젝트 안에서 생성
+            ballCon = currentPlayerObj.GetComponent<BallController>();
             playerFirstObjScript = currentPlayerObj.GetComponent<PlayerFirstObjScript>();
 
             if (playerFirstObjScript == null)
@@ -234,9 +239,10 @@ public class GameManager : MonoBehaviour
             StartPanel.SetActive(true);
         };
 
-        RespwnPlayer = () =>
-        {
-            currentPlayerObj.transform.position = playerSpawnTrm.position;
+        RespwnPlayer = () => {
+            currentPlayerObj.transform.position = respawnTrm.position; // 생성된 오브젝트의 위치는 리스폰
+                                               // 오브젝트의 위치로
+           // ballCon.ResetCanvasPos();
         };
     }
     void Start()
