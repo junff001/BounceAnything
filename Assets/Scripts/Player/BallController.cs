@@ -9,8 +9,8 @@ public class BallController : MonoBehaviour
 {
     private GameManager gameManager = null;
     private PlayerInput playerInput = null;
-    private PlayerFirstObjScript playerFirst;
     private Rigidbody rigid = null;
+    public PlayerFirstObjScript playerFirst;
 
     [SerializeField]
     private LayerMask whatIsMovable;
@@ -26,9 +26,10 @@ public class BallController : MonoBehaviour
     private const float maxSpeed = 11f;
 
     private float totalTime = 0f;
-    private bool canMove;
+    private bool canMove = true;
     private float yDelta;
     private float ColRadius;
+    public Transform ballObjTrm; // 실제 공
     public RectTransform sizeCanvas;
     public RectTransform sizeNumCanvas;
     public Image sizeImage;
@@ -37,19 +38,24 @@ public class BallController : MonoBehaviour
 
     void Start()
     {
-        gameManager = GameManager.Instance;
-
-        gameManager.RespwnPlayer += () =>
-        {
-            rigid.velocity = Vector3.zero;
-        };
-
-        rigid = GetComponent<Rigidbody>();
-        playerInput = GetComponent<PlayerInput>();
-        playerFirst = GetComponent<PlayerFirstObjScript>();
-        startPos = transform.position;
+        gameManager = GameManager.Instance; 
+        
+        rigid = ballObjTrm.GetComponent<Rigidbody>();
+        playerInput = ballObjTrm.GetComponent<PlayerInput>();
+        startPos = ballObjTrm.localPosition;
         radius = playerFirst.MyCol.radius;
+
+        //gameManager.RespwnPlayer += () =>
+        //{
+        //    rigid. = Vector3.zero;
+        //};
     }
+
+    //private void OnEnable()
+    //{
+    //    startPos = ballObjTrm.position;
+    //    radius = playerFirst.MyCol.radius;
+    //}
 
     void FixedUpdate()
     {
@@ -58,11 +64,11 @@ public class BallController : MonoBehaviour
 
     void Update()
     {
-        CanvasFollow(sizeCanvas);
-        CanvasFollow(sizeNumCanvas);
-        startPos = transform.position; // 함수가 두번 실행 됨으로 반복 코드는 함수에서 따로 빼준다.
-        radius = playerFirst.MyCol.radius;
+        ResetCanvasPos();
 
+        startPos = ballObjTrm.localPosition; // 함수가 두번 실행 됨으로 반복 코드는 함수에서 따로 빼준다.
+        radius = playerFirst.MyCol.radius;
+        
         ImageSizeUp(sizeCanvas);
         ImageSizeUp(sizeNumCanvas);
     }
@@ -85,22 +91,17 @@ public class BallController : MonoBehaviour
 
     private void BallMove()
     {
-        if (canMove)
-        { //Ball 이동관련
-            if (playerInput.XMove > 0)
-            {
+        if (canMove) { //Ball 이동관련
+            if (playerInput.XMove > 0) {
                 rigid.AddForce(Camera.main.gameObject.transform.forward * moveSpeed, ForceMode.Impulse);
             }
-            else if (playerInput.XMove < 0)
-            {
+            else if (playerInput.XMove < 0) {
                 rigid.AddForce(-Camera.main.gameObject.transform.forward * moveSpeed, ForceMode.Impulse);
             }
-            if (playerInput.ZMove > 0)
-            {
+            if (playerInput.ZMove > 0) {
                 rigid.AddForce(Camera.main.gameObject.transform.right * moveSpeed, ForceMode.Impulse);
             }
-            else if (playerInput.ZMove < 0)
-            {
+            else if (playerInput.ZMove < 0) {
                 rigid.AddForce(-Camera.main.gameObject.transform.right * moveSpeed, ForceMode.Impulse);
             }
             rigid.velocity = Vector3.ClampMagnitude(rigid.velocity, maxSpeed); //공 속도제한
@@ -110,7 +111,8 @@ public class BallController : MonoBehaviour
 
     private void CanvasFollow(RectTransform canvas) // 사이즈 이미지 함수
     {
-        Vector3 delta = transform.position - startPos;  // 현재 공의 위치와 이전 공의 위치의 사잇값
+        Vector3 delta = ballObjTrm.localPosition - startPos;  // 현재 공의 위치 - 이전 공의 위치 (두 점 사이의 거리)
+                                       // 월드 스페이스 - 월드 스페이스
         float colDelta = playerFirst.MyCol.radius - radius;
 
         Vector3 pos = canvas.position; // 현재 캔버스 위치
@@ -131,6 +133,13 @@ public class BallController : MonoBehaviour
 
         image.transform.localScale = scale;
     }
+
+    public void ResetCanvasPos()
+    {
+        CanvasFollow(sizeCanvas);
+        CanvasFollow(sizeNumCanvas);
+    }
+
 
     private void SizeCheck()
     {
