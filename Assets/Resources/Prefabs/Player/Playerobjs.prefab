@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2492716001113272896}
   - component: {fileID: -7076778544020327406}
   - component: {fileID: -5600687686392007095}
+  - component: {fileID: 6874162319194164449}
   m_Layer: 3
   m_Name: Playerobjs
   m_TagString: Player
@@ -161,6 +162,8 @@ MonoBehaviour:
   rotationSpeed: 3
   jumpHeight: 0
   sizeCanvas: {fileID: 2666100779408439002, guid: 3dc415163f33d0a47ad98d809e20599e, type: 3}
+  sizeNumCanvas: {fileID: 0}
+  sizeImage: {fileID: 0}
 --- !u!114 &-5600687686392007095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,3 +176,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eea52a1bcd66864cbe5eaf7ace53880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6874162319194164449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2492716001113272907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63f3ec657a8d39149a4e19f511917a00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feverMax: 1
+  feverSpeed: 100
+  feverMinusSpeedWhenIsFever: 1.5
+  feverUpSpeed: 2

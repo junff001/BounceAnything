@@ -6,15 +6,36 @@ public class BallFeverTimeScript : MonoBehaviour
 {
     private PlayerFirstObjScript playerFirstObjScript = null;
     private BallController ballController = null;
+    private FeverFillScript feverFillScript = null;
+    private FeverFillScript FeverFillScript
+    {
+        get
+        {
+            if (feverFillScript == null)
+            {
+                feverFillScript = FindObjectOfType<FeverFillScript>();
+
+                if (feverFillScript == null)
+                {
+                    Debug.LogError("There is no FeverFillScript!");
+                }
+            }
+
+            return feverFillScript;
+        }
+    }
 
     [SerializeField]
     private float feverMax = 5f;
     [Header("공이 피버모드일 때의 스피드")]
     [SerializeField]
     private float feverSpeed = 0f;
-    [Header("공이 피버모드가 됐을 때 피버 게이지가 줄어드는 속도")]
+    [Header("공이 '피버모드'가 됐을 때 피버 '게이지'가 줄어드는 속도")]
     [SerializeField]
-    private float feverMinusSpeed = 1.5f;
+    private float feverMinusSpeedWhenIsFever = 1.5f;
+    [Header("피버 '게이지'가 차오르는 속도")]
+    [SerializeField]
+    private float feverUpSpeed = 2f;
 
     private float fever = 0f;
     private float plusFever = 0f;
@@ -33,7 +54,7 @@ public class BallFeverTimeScript : MonoBehaviour
             plusFever += size;
         };
     }
-
+    
     void Update()
     {
         SetFever();
@@ -50,7 +71,7 @@ public class BallFeverTimeScript : MonoBehaviour
             ballController.MoveSpeed = feverSpeed;
 
             plusFever = 0f;
-            fever = 0f;
+            fever = feverMax;
         }
     }
 
@@ -58,12 +79,13 @@ public class BallFeverTimeScript : MonoBehaviour
     {
         if (isFever)
         {
-            fever -= Time.deltaTime * feverMinusSpeed;
+            fever -= Time.deltaTime * feverMinusSpeedWhenIsFever;
 
-            if(fever <= 0f)
+            if (fever <= 0f)
             {
                 fever = 0f;
 
+                ballController.MoveSpeed = playerSpeedOrigin;
                 isFever = false;
             }
         }
@@ -71,8 +93,8 @@ public class BallFeverTimeScript : MonoBehaviour
         {
             if (plusFever > 0f)
             {
-                plusFever -= Time.deltaTime;
-                fever += Time.deltaTime;
+                plusFever -= Time.deltaTime * feverUpSpeed;
+                fever += Time.deltaTime * feverUpSpeed;
 
                 if (plusFever <= 0f)
                 {
@@ -81,5 +103,7 @@ public class BallFeverTimeScript : MonoBehaviour
                 }
             }
         }
+
+        FeverFillScript.SetScale(fever, feverMax);
     }
 }

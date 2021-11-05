@@ -74,6 +74,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject GetScoreText = null;
     [SerializeField]
+    private GameObject FeverGauge = null;
+    [SerializeField]
     private Transform playerSpawnTrm = null;
     [SerializeField]
     public Transform respawnTrm = null;
@@ -210,6 +212,7 @@ public class GameManager : MonoBehaviour
 
             StartPanel.SetActive(false);
             scoreText.gameObject.SetActive(true);
+            FeverGauge.SetActive(true);
         };
 
         EndGame = () =>
@@ -231,6 +234,7 @@ public class GameManager : MonoBehaviour
 
             EndPanel.SetActive(true);
             scoreText.gameObject.SetActive(false);
+            FeverGauge.SetActive(false);
         };
 
         RestartGame = () =>
