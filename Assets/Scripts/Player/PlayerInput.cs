@@ -9,6 +9,16 @@ public class PlayerInput : MonoBehaviour
     {
         get { return mousePos; }
     }
+    private float mouseXMove;
+    public float MouseXMove
+    {
+        get { return mouseXMove; }
+    }
+    private float mouseYMove;
+    public float MouseYMove
+    {
+        get { return mouseYMove; }
+    }
 
     private float xMove;
     public float XMove
@@ -25,6 +35,9 @@ public class PlayerInput : MonoBehaviour
     void Update()
     {
         mousePos = Input.mousePosition;
+        mouseXMove = Input.GetAxis("Mouse X");
+        mouseYMove = Input.GetAxis("Mouse Y");
+
         xMove = Input.GetAxis("Vertical");
         zMove = Input.GetAxis("Horizontal");
     }

@@ -22,6 +22,12 @@ public class CameraScript : MonoBehaviour
     [SerializeField]
     private float cameraHeight = 10f;
 
+    [SerializeField]
+    private float mouseXSpeed = 1f;
+
+    private float angleY = 0f;
+    private float angleXZ = 0f;
+
     private void Awake()
     {
         gameManager = GameManager.Instance;
@@ -38,6 +44,8 @@ public class CameraScript : MonoBehaviour
 
             playerTrm = playerFirstObjScript.transform;
         };
+
+
     }
     void Update()
     {
@@ -46,8 +54,8 @@ public class CameraScript : MonoBehaviour
             Vector3 cameraPos = new Vector3(playerTrm.position.x - transform.forward.x * cameraRange, playerTrm.position.y, playerTrm.position.z - transform.forward.z * cameraRange);
             transform.position = cameraPos;
 
-            float angleY = (playerInput.MousePos.x / (Mathf.PI * 2));
-            float angleXZ = (playerInput.MousePos.y / (Mathf.PI * 2));
+            angleY += playerInput.MouseXMove * mouseXSpeed;
+            angleXZ += playerInput.MouseYMove;
 
             angleXZ = Mathf.Clamp(angleXZ, minY, maxY);
 

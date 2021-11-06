@@ -213,6 +213,8 @@ public class GameManager : MonoBehaviour
             StartPanel.SetActive(false);
             scoreText.gameObject.SetActive(true);
             FeverGauge.SetActive(true);
+
+            Cursor.lockState = CursorLockMode.Locked;
         };
 
         EndGame = () =>
@@ -235,6 +237,8 @@ public class GameManager : MonoBehaviour
             EndPanel.SetActive(true);
             scoreText.gameObject.SetActive(false);
             FeverGauge.SetActive(false);
+
+            Cursor.lockState = CursorLockMode.None;
         };
 
         RestartGame = () =>
