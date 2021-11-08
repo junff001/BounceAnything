@@ -40,8 +40,8 @@ public class BallController : MonoBehaviour
     {
         gameManager = GameManager.Instance; 
         
-        rigid = ballObjTrm.GetComponent<Rigidbody>();
-        playerInput = ballObjTrm.GetComponent<PlayerInput>();
+        rigid = ballObjTrm.GetComponent<Rigidbody>();  
+        playerInput = ballObjTrm.GetComponent<PlayerInput>(); 
         startPos = ballObjTrm.localPosition;
         radius = playerFirst.MyCol.radius;
 
@@ -66,7 +66,7 @@ public class BallController : MonoBehaviour
     {
         ResetCanvasPos();
 
-        startPos = ballObjTrm.localPosition; // 함수가 두번 실행 됨으로 반복 코드는 함수에서 따로 빼준다.
+        startPos = ballObjTrm.localPosition; // 함수가 두번 실행 됨으로 반복 코드는 함수에서 따로 빼준다. 
         radius = playerFirst.MyCol.radius;
         
         ImageSizeUp(sizeCanvas);
@@ -120,7 +120,7 @@ public class BallController : MonoBehaviour
         pos.z += delta.z; //사잇값 만큼 더하기
         pos.y += delta.y - colDelta; // 위치 + 공과 캔버스의 높이
 
-        canvas.position = pos;
+        canvas.position  = pos;
     }
 
     private void ImageSizeUp(RectTransform image)

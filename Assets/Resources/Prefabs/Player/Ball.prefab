@@ -397,6 +397,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4171478533939097328}
     - target: {fileID: -7076778544020327406, guid: 82494b345f5542445bba04f831bbf0f5, type: 3}
+      propertyPath: playerFirst
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -7076778544020327406, guid: 82494b345f5542445bba04f831bbf0f5, type: 3}
       propertyPath: sizeNumCanvas
       value: 
       objectReference: {fileID: 8155698946547046683}
