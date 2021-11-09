@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-// 되도록 객체 기준으로 기능 합치기
-// 연관성 없는 객체일때 cs 나누기
 
 public class BallController : MonoBehaviour
 {
     private GameManager gameManager = null;
     private PlayerInput playerInput = null;
+    private PlayerFirstObjScript playerFirst = null;
     private Rigidbody rigid = null;
-    public PlayerFirstObjScript playerFirst;
 
+    // 공 움직임 관련 변수
     [SerializeField]
     private LayerMask whatIsMovable;
     [SerializeField]
@@ -23,39 +22,41 @@ public class BallController : MonoBehaviour
     [SerializeField]
     private float jumpHeight = 10f;
     [SerializeField]
-    private const float maxSpeed = 11f;
-
-    private float totalTime = 0f;
+    private float maxSpeed = 11f;
     private bool canMove = true;
+
+    // 이전 값 관련 변수
+    private float totalTime = 0f;
+    private float radius;
     private float yDelta;
     private float ColRadius;
-    public Transform ballObjTrm; // 실제 공
-    public RectTransform sizeCanvas;
-    public RectTransform sizeNumCanvas;
-    public Image sizeImage;
     private Vector3 startPos;
-    private float radius;
 
+    // 캔버스 관련 변수
+    private RectTransform canvas;
+    public RectTransform sizeCanvas;
+    public Image sizeImage;
+    public Text sizeText;
+    [SerializeField]
+    private float size = 2f;
+
+    // 캔버스 높이 조절 변수
+    [SerializeField]
+    private float canvasHeight = -2f;
+    
     void Start()
     {
         gameManager = GameManager.Instance; 
         
-        rigid = ballObjTrm.GetComponent<Rigidbody>();  
-        playerInput = ballObjTrm.GetComponent<PlayerInput>(); 
-        startPos = ballObjTrm.localPosition;
-        radius = playerFirst.MyCol.radius;
+        rigid = GetComponent<Rigidbody>();  
+        playerInput = GetComponent<PlayerInput>();
+        playerFirst = GetComponent<PlayerFirstObjScript>();
 
-        //gameManager.RespwnPlayer += () =>
-        //{
-        //    rigid. = Vector3.zero;
-        //};
+        startPos = transform.position; // 이전 위치
+        radius = playerFirst.MyCol.radius; // 이전 반지름 길이
+
+        canvas = Instantiate(sizeCanvas, startPos + new Vector3(0, canvasHeight, 0), Quaternion.Euler(90, 0, 0));
     }
-
-    //private void OnEnable()
-    //{
-    //    startPos = ballObjTrm.position;
-    //    radius = playerFirst.MyCol.radius;
-    //}
 
     void FixedUpdate()
     {
@@ -64,27 +65,20 @@ public class BallController : MonoBehaviour
 
     void Update()
     {
-        ResetCanvasPos();
-
-        startPos = ballObjTrm.localPosition; // 함수가 두번 실행 됨으로 반복 코드는 함수에서 따로 빼준다. 
-        radius = playerFirst.MyCol.radius;
-        
-        ImageSizeUp(sizeCanvas);
-        ImageSizeUp(sizeNumCanvas);
+        CanvasFollow(canvas);
+        CanvasSizeUp(canvas);
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.collider.CompareTag("Movable"))
-        {
+        if (collision.collider.CompareTag("Movable")) {
             canMove = true;
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.collider.CompareTag("Movable"))
-        {
+        if (collision.collider.CompareTag("Movable")) {
             canMove = false;
         }
     }
@@ -111,22 +105,24 @@ public class BallController : MonoBehaviour
 
     private void CanvasFollow(RectTransform canvas) // 사이즈 이미지 함수
     {
-        Vector3 delta = ballObjTrm.localPosition - startPos;  // 현재 공의 위치 - 이전 공의 위치 (두 점 사이의 거리)
-                                       // 월드 스페이스 - 월드 스페이스
+        Vector3 delta = transform.position - startPos;  // 현재 공의 위치 - 이전 공의 위치 (두 점 사이의 거리) 
         float colDelta = playerFirst.MyCol.radius - radius;
 
-        Vector3 pos = canvas.position; // 현재 캔버스 위치
-        pos.x += delta.x; //사잇값 만큼 더하기
-        pos.z += delta.z; //사잇값 만큼 더하기
-        pos.y += delta.y - colDelta; // 위치 + 공과 캔버스의 높이
+        Vector3 pos = canvas.position;
+        pos.x += delta.x; 
+        pos.z += delta.z; 
+        pos.y += delta.y - colDelta; // 사잇값 - 컬라이더 커진 값
 
-        canvas.position  = pos;
+        canvas.position = pos;
+
+        startPos = transform.position; // 반복 
+        radius = playerFirst.MyCol.radius; // 반복
     }
 
-    private void ImageSizeUp(RectTransform image)
+    private void CanvasSizeUp(RectTransform image)
     {
         Vector3 scale = image.transform.localScale;
-        float radius = playerFirst.MyCol.radius;
+        float radius = playerFirst.MyCol.radius + size;
 
         scale.x = radius;
         scale.y = radius;
@@ -134,16 +130,19 @@ public class BallController : MonoBehaviour
         image.transform.localScale = scale;
     }
 
-    public void ResetCanvasPos()
+    private void SizeMark()
     {
-        CanvasFollow(sizeCanvas);
-        CanvasFollow(sizeNumCanvas);
+        //sizeText.text = (playerFirst.MyCol.radius * 2).ToString("F2") + "CM"; // 지름 계산
     }
 
-
-    private void SizeCheck()
+    private void MarkFollow()
     {
-
+        //Vector3 direction = sizeNumCanvas.position - Camera.main.transform.position;
+        //sizeNumCanvas.rotation = Quaternion.LookRotation(direction);
+        //Vector3 position = Camera.main.ScreenToWorldPoint(ballObjTrm.position);
+        //sizeNumCanvas.position = position + new Vector3(50, 1, 0);
+        //sizeNumCanvas.Rotate(Camera.main.)
+        //sizeNumCanvas.position = Camera.main.WorldToScreenPoint(ballObjTrm.position + new Vector3(1, 1, 0));
     }
 }
 

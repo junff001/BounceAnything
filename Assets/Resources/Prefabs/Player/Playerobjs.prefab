@@ -161,9 +161,12 @@ MonoBehaviour:
   moveSpeed: 3
   rotationSpeed: 3
   jumpHeight: 0
+  maxSpeed: 8
   sizeCanvas: {fileID: 2666100779408439002, guid: 3dc415163f33d0a47ad98d809e20599e, type: 3}
-  sizeNumCanvas: {fileID: 0}
   sizeImage: {fileID: 0}
+  sizeText: {fileID: 0}
+  size: 0.2
+  canvasHeight: -0.45
 --- !u!114 &-5600687686392007095
 MonoBehaviour:
   m_ObjectHideFlags: 0

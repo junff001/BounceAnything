@@ -248,9 +248,7 @@ public class GameManager : MonoBehaviour
         };
 
         RespwnPlayer = () => {
-            currentPlayerObj.transform.GetChild(1).position = transform.position; // 생성된 오브젝트의 위치는 리스폰
-                                               // 오브젝트의 위치로
-           // ballCon.ResetCanvasPos();
+            currentPlayerObj.transform.position = transform.position;
         };
     }
     void Start()
