@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5604210662316030884}
   m_Layer: 7
   m_Name: SM_Prop_Barrel_01
-  m_TagString: Untagged
+  m_TagString: Movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

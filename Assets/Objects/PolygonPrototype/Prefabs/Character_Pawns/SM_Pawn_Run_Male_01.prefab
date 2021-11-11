@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4935628449027934717}
   m_Layer: 7
   m_Name: SM_Pawn_Run_Male_01
-  m_TagString: Untagged
+  m_TagString: Movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sizeOrigin: 17
-  sizePlus: 0.08
+  sizePlus: 0.07
   socreUp: 0
 --- !u!64 &4935628449027934717
 MeshCollider:
