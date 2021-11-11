@@ -108,7 +108,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2492716001113272907}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 4b739a2cc2fcbb84baa862e15d051b18, type: 2}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
@@ -122,7 +122,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2492716001113272907}
   serializedVersion: 2
-  m_Mass: 10
+  m_Mass: 6
   m_Drag: 0
   m_AngularDrag: 3.25
   m_UseGravity: 1
@@ -158,10 +158,10 @@ MonoBehaviour:
   whatIsMovable:
     serializedVersion: 2
     m_Bits: 192
-  moveSpeed: 3
+  moveSpeed: 2.8
   rotationSpeed: 3
   jumpHeight: 0
-  maxSpeed: 8
+  maxSpeed: 6.5
   sizeCanvas: {fileID: 2666100779408439002, guid: 3dc415163f33d0a47ad98d809e20599e, type: 3}
   sizeImage: {fileID: 0}
   sizeText: {fileID: 0}

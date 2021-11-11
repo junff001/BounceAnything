@@ -248,7 +248,7 @@ public class GameManager : MonoBehaviour
         };
 
         RespwnPlayer = () => {
-            currentPlayerObj.transform.position = transform.position;
+            currentPlayerObj.transform.position = respawnTrm.position;
         };
     }
     void Start()

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class BallController : MonoBehaviour
 {
@@ -23,7 +24,8 @@ public class BallController : MonoBehaviour
     private float jumpHeight = 10f;
     [SerializeField]
     private float maxSpeed = 11f;
-    private bool canMove = true;
+    private bool canMove = false;
+    private Transform cam;
 
     // 이전 값 관련 변수
     private float totalTime = 0f;
@@ -51,6 +53,7 @@ public class BallController : MonoBehaviour
         rigid = GetComponent<Rigidbody>();  
         playerInput = GetComponent<PlayerInput>();
         playerFirst = GetComponent<PlayerFirstObjScript>();
+        cam = Camera.main.gameObject.transform;
 
         startPos = transform.position; // 이전 위치
         radius = playerFirst.MyCol.radius; // 이전 반지름 길이
@@ -61,6 +64,7 @@ public class BallController : MonoBehaviour
     void FixedUpdate()
     {
         BallMove();
+        Debug.Log(string.Format("BallVelocity:{0}", rigid.velocity));
     }
 
     void Update()
@@ -87,19 +91,18 @@ public class BallController : MonoBehaviour
     {
         if (canMove) { //Ball 이동관련
             if (playerInput.XMove > 0) {
-                rigid.AddForce(Camera.main.gameObject.transform.forward * moveSpeed, ForceMode.Impulse);
+                rigid.AddForce(cam.forward * moveSpeed, ForceMode.Impulse);
             }
             else if (playerInput.XMove < 0) {
-                rigid.AddForce(-Camera.main.gameObject.transform.forward * moveSpeed, ForceMode.Impulse);
+                rigid.AddForce(-cam.forward * moveSpeed, ForceMode.Impulse);
             }
             if (playerInput.ZMove > 0) {
-                rigid.AddForce(Camera.main.gameObject.transform.right * moveSpeed, ForceMode.Impulse);
+                rigid.AddForce(cam.right * moveSpeed, ForceMode.Impulse);
             }
             else if (playerInput.ZMove < 0) {
-                rigid.AddForce(-Camera.main.gameObject.transform.right * moveSpeed, ForceMode.Impulse);
+                rigid.AddForce(-cam.right * moveSpeed, ForceMode.Impulse);
             }
             rigid.velocity = Vector3.ClampMagnitude(rigid.velocity, maxSpeed); //공 속도제한
-            // Debug.Log(string.Format("BallVelocity:{0}", rigid.velocity));
         }
     }
 
@@ -127,7 +130,7 @@ public class BallController : MonoBehaviour
         scale.x = radius;
         scale.y = radius;
 
-        image.transform.localScale = scale;
+        image.transform.DOScale(scale, 0.4f);
     }
 
     private void SizeMark()
