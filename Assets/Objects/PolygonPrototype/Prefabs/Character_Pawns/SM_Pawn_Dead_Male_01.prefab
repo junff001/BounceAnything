@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -4710940403024529649}
   m_Layer: 7
   m_Name: SM_Pawn_Dead_Male_01
-  m_TagString: Untagged
+  m_TagString: Movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
