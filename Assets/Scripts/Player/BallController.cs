@@ -14,6 +14,7 @@ public class BallController : MonoBehaviour
     // 공 움직임 관련 변수
     [SerializeField]
     private LayerMask whatIsMovable;
+    [Header("공 기본 속도")]
     [SerializeField]
     private float moveSpeed = 2f;
     public float MoveSpeed { get { return moveSpeed; } set { moveSpeed = value; } }
@@ -22,10 +23,13 @@ public class BallController : MonoBehaviour
     public float RotationSpeed { get { return rotationSpeed; } set { rotationSpeed = value; } }
     [SerializeField]
     private float jumpHeight = 10f;
+    [Header("공 최대 속도")]
     [SerializeField]
     private float maxSpeed = 11f;
     private bool canMove = false;
     private Transform cam;
+    [SerializeField]
+    private ParticleSystem particle;
 
     // 이전 값 관련 변수
     private float totalTime = 0f;
@@ -39,10 +43,12 @@ public class BallController : MonoBehaviour
     public RectTransform sizeCanvas;
     public Image sizeImage;
     public Text sizeText;
+    [Header("사이즈 캔버스 커지는 정도")]
     [SerializeField]
     private float size = 2f;
 
     // 캔버스 높이 조절 변수
+    [Header("사이즈 캔버스 높이")]
     [SerializeField]
     private float canvasHeight = -2f;
     
@@ -131,6 +137,11 @@ public class BallController : MonoBehaviour
         scale.y = radius;
 
         image.transform.DOScale(scale, 0.4f);
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        
     }
 
     private void SizeMark()

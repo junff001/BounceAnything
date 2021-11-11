@@ -93,6 +93,9 @@ public class GameManager : MonoBehaviour
     private Text clearTimeText = null;
     [SerializeField]
     private Text clearScoreText = null;
+    [Header("리스폰 높이")]
+    [SerializeField]
+    private float respwnHeight = 1.5f;
     [SerializeField]
     private LayerMask whatIsPlayerFirstObj;
     public LayerMask WhatisPlayerFirstObj
@@ -120,11 +123,14 @@ public class GameManager : MonoBehaviour
     }
 
     private PoolManager poolManager = null;
+    private PlayerFirstObjScript pFirst;
     private Sprite newCursor = null;
     private Sprite newCursor_Clicked = null;
     private int totalMin = 0;
     private float totalSec = 0f;
     private bool gameClear = false;
+    private float radius;
+    
 
     private BallController ballCon;
 
@@ -189,8 +195,9 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         poolManager = PoolManager.Instance;
-
-        StartGame = () =>
+ 
+        // 람다로 초기화
+        StartGame = () => 
         {
             totalSec = 0f;
             totalMin = 0;
@@ -204,6 +211,8 @@ public class GameManager : MonoBehaviour
             currentPlayerObj = Instantiate(playerPrefab, playerSpawnTrm); // 게임 매니저 오브젝트 안에서 생성
             ballCon = currentPlayerObj.GetComponent<BallController>();
             playerFirstObjScript = currentPlayerObj.GetComponent<PlayerFirstObjScript>();
+            pFirst = currentPlayerObj.GetComponent<PlayerFirstObjScript>();
+            radius = pFirst.MyCol.radius;
 
             if (playerFirstObjScript == null)
             {
@@ -248,6 +257,10 @@ public class GameManager : MonoBehaviour
         };
 
         RespwnPlayer = () => {
+            if (radius < pFirst.MyCol.radius) {
+                respawnTrm.position += new Vector3(0, respwnHeight, 0);
+                radius = pFirst.MyCol.radius;
+            }
             currentPlayerObj.transform.position = respawnTrm.position;
         };
     }
@@ -259,6 +272,7 @@ public class GameManager : MonoBehaviour
         newCursor_Clicked = newCursors[1];
 
         Cursor.visible = false;
+
     }
     void Update()
     {
