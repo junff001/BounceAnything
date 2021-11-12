@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BallFeverTimeScript : MonoBehaviour
 {
+    private SpawnAfterImage spawnAfterImage = null;
     private PlayerFirstObjScript playerFirstObjScript = null;
     private BallController ballController = null;
     private FeverFillScript feverFillScript = null;
@@ -36,6 +37,9 @@ public class BallFeverTimeScript : MonoBehaviour
     [Header("피버 '게이지'가 차오르는 속도")]
     [SerializeField]
     private float feverUpSpeed = 2f;
+    [Header("잔상이 소환되는 주기")]
+    [SerializeField]
+    private float afterImageSpawnDelay = 0.5f;
 
     private float fever = 0f;
     private float plusFever = 0f;
@@ -48,6 +52,7 @@ public class BallFeverTimeScript : MonoBehaviour
     {
         playerFirstObjScript = GetComponent<PlayerFirstObjScript>();
         ballController = GetComponent<BallController>();
+        spawnAfterImage = GetComponent<SpawnAfterImage>();
 
         playerFirstObjScript.WhenSizeUp += (size) =>
         {
@@ -79,6 +84,8 @@ public class BallFeverTimeScript : MonoBehaviour
     {
         if (isFever)
         {
+            StartCoroutine(SpawnAfterImage());
+
             fever -= Time.deltaTime * feverMinusSpeedWhenIsFever;
 
             if (fever <= 0f)
@@ -105,5 +112,11 @@ public class BallFeverTimeScript : MonoBehaviour
         }
 
         FeverFillScript.SetScale(fever, feverMax);
+    }
+    private IEnumerator SpawnAfterImage()
+    {
+        spawnAfterImage.Spawn(transform.position, playerFirstObjScript.MyCol.radius, transform.rotation);
+
+        yield return new WaitForSeconds(afterImageSpawnDelay);
     }
 }

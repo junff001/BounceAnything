@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 4616046365852449645}
   - component: {fileID: 4616046365852449634}
   - component: {fileID: 4616046365852449635}
-  - component: {fileID: 4616046365852449632}
   - component: {fileID: 4616046365852449644}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: AfterImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,19 +82,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &4616046365852449632
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4616046365852449633}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4616046365852449644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,5 +94,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbb1b6a63169ee84abbf769bdfb47857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originAlpha: 1
-  fadeOutTime: 3
+  originAlpha: 0.5
+  fadeOutTime: 0.1

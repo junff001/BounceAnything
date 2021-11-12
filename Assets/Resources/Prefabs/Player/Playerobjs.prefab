@@ -152,10 +152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63f3ec657a8d39149a4e19f511917a00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  feverMax: 1
+  feverMax: 0.5
   feverSpeed: 100
-  feverMinusSpeedWhenIsFever: 1.5
+  feverMinusSpeedWhenIsFever: 0.5
   feverUpSpeed: 2
+  afterImageSpawnDelay: 0.5
 --- !u!23 &2394007004040738892
 MeshRenderer:
   m_ObjectHideFlags: 0
