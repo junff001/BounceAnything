@@ -6,6 +6,8 @@ using System;
 public class PlayerFirstObjScript : MonoBehaviour
 {
     private GameManager gameManager = null;
+    private SpawnAfterImage spawnAfterImage = null;
+
     private SphereCollider myCol = null;
     public SphereCollider MyCol
     {
@@ -49,6 +51,8 @@ public class PlayerFirstObjScript : MonoBehaviour
 
     private void Awake()
     {
+        spawnAfterImage = GetComponent<SpawnAfterImage>();
+
         myCol = GetComponent<SphereCollider>();
 
         WhenSizeUp = (e) =>
@@ -63,6 +67,7 @@ public class PlayerFirstObjScript : MonoBehaviour
 
 
         playerTotalSize = playerSizeOrigin;
+        spawnAfterImage.Spawn(transform.position, Quaternion.identity);
         //playerTotalSize = myCol.bounds.extents.x * myCol.bounds.extents.y * myCol.bounds.extents.z; 
         //// 모양에 따라 알맞는 크기를 구하기 힘들다고 판단, 크기를 구하는 식을 하나로 통일한다;
     }

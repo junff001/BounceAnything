@@ -8,12 +8,13 @@ public class PoolManager : MonoBehaviour
     private static PoolManager instance;
     public static PoolManager Instance
     {
-        get{
-            if(instance == null)
+        get
+        {
+            if (instance == null)
             {
                 instance = FindObjectOfType<PoolManager>();
 
-                if(instance == null)
+                if (instance == null)
                 {
                     GameObject temp = new GameObject("PoolManager");
                     instance = temp.AddComponent<PoolManager>();
@@ -28,7 +29,14 @@ public class PoolManager : MonoBehaviour
     private Queue<GameObject> textObjQueue = new Queue<GameObject>();
     public Queue<GameObject> TextObjQueue
     {
-        get { return textObjQueue; }                
+        get { return textObjQueue; }
         set { textObjQueue = value; }
+    }
+    [SerializeField]
+    private Queue<AfterImage> afterImages = new Queue<AfterImage>();
+    public Queue<AfterImage> AfterImages
+    {
+        get { return afterImages; }
+        set { afterImages = value; }
     }
 }
