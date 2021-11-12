@@ -110,5 +110,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sizeOrigin: 15
-  sizePlus: 0.06
+  sizePlus: 0.05
   socreUp: 0
