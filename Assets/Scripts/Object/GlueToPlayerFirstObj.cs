@@ -136,7 +136,7 @@ public class GlueToPlayerFirstObj : MonoBehaviour
             {
                 float upSize = glueableObj.SizePlus;
                 gameManager.PlayerFirstObjScript.PlusPlayerTotalSize += upSize; // PlusPlayerTotalSize는 PlusRadius와 동일한 역할을 한다.
-                gameManager.SpawnGetScoreText(upSize);
+                gameManager.SpawnGetScoreText(upSize * 100f);
             }
             
             myCol.isTrigger = true;

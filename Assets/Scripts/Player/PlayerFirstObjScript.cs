@@ -74,7 +74,7 @@ public class PlayerFirstObjScript : MonoBehaviour
         SetPlayerTotalSize();
         SetPlayerColliderRadius();
 
-        gameManager.Score = playerTotalSize; // 현재점수 갱신
+        gameManager.Score = playerTotalSize * 100f; // 현재점수 갱신
     }
 
     private void OnTriggerEnter(Collider other)
