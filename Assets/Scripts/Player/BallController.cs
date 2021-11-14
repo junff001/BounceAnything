@@ -95,7 +95,7 @@ public class BallController : MonoBehaviour
                 for (int i = 0; i < collision.contacts.Length; i++) {
                     point = collision.contacts[i].point;
                     GameObject ps = Instantiate(particle, point, Quaternion.identity);
-                    //Destroy(ps, 0.1f);
+                    Destroy(ps, 1f);
                 }
             }
         }
