@@ -29,7 +29,7 @@ public class BallController : MonoBehaviour
     private bool canMove = false;
     private Transform cam;
     [SerializeField]
-    private ParticleSystem particle;
+    private GameObject particle;
 
     // 이전 값 관련 변수
     private float totalTime = 0f;
@@ -37,6 +37,7 @@ public class BallController : MonoBehaviour
     private float yDelta;
     private float ColRadius;
     private Vector3 startPos;
+    private Vector3 velocity;
 
     // 캔버스 관련 변수
     private RectTransform canvas;
@@ -65,6 +66,8 @@ public class BallController : MonoBehaviour
         radius = playerFirst.MyCol.radius; // 이전 반지름 길이
 
         canvas = Instantiate(sizeCanvas, startPos + new Vector3(0, canvasHeight, 0), Quaternion.Euler(90, 0, 0));
+
+        velocity = new Vector3(1f, 1f, 1f);
     }
 
     void FixedUpdate()
@@ -77,6 +80,25 @@ public class BallController : MonoBehaviour
     {
         CanvasFollow(canvas);
         CanvasSizeUp(canvas);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Vector3 point;
+        float speedX = Mathf.Abs(rigid.velocity.x);
+        float speedY = Mathf.Abs(rigid.velocity.y);
+        float speedZ = Mathf.Abs(rigid.velocity.z);
+        int layerMask = LayerMask.NameToLayer("GROUND");
+
+        if (speedX >= velocity.x || speedY >= velocity.y || speedZ >= velocity.z) {
+            if (collision.gameObject.layer != layerMask) {
+                for (int i = 0; i < collision.contacts.Length; i++) {
+                    point = collision.contacts[i].point;
+                    GameObject ps = Instantiate(particle, point, Quaternion.identity);
+                    //Destroy(ps, 0.1f);
+                }
+            }
+        }
     }
 
     private void OnCollisionStay(Collision collision)
@@ -137,11 +159,6 @@ public class BallController : MonoBehaviour
         scale.y = radius;
 
         image.transform.DOScale(scale, 0.4f);
-    }
-
-    private void OnParticleCollision(GameObject other)
-    {
-        
     }
 
     private void SizeMark()

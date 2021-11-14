@@ -85,8 +85,8 @@ public class PlayerFirstObjScript : MonoBehaviour
         {
             if (playerTotalSize >= glueableObj.SizeOrigin)
             {
-                Debug.Log("p" + playerTotalSize);
-                Debug.Log("t" + glueableObj.SizeOrigin);
+               //Debug.Log("p" + playerTotalSize);
+               //Debug.Log("t" + glueableObj.SizeOrigin);
 
                 glueableObj.gameObject.AddComponent<GlueToPlayerFirstObj>();
 
