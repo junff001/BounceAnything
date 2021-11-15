@@ -19,14 +19,17 @@ public class PunchObjScript : MonoBehaviour
 
     private bool isShoot = false;
 
+    private float firstDistance = 0f;
+
     void Start()
     {
-        
+        firstDistance = Vector3.Distance(transform.position, shootObj.transform.position);
     }
 
     void Update()
     {
         Shoot();
+        ShootReset();
     }
     private bool CheckPlayer()
     {
@@ -41,6 +44,18 @@ public class PunchObjScript : MonoBehaviour
             rigid.AddForce(Vector3.right * shootPower, ForceMode.Impulse);
 
             isShoot = true;
+        }
+    }
+    private void ShootReset()
+    {
+        if(isShoot)
+        {
+            float distance = Vector3.Distance(transform.position, shootObj.transform.position);
+
+            if(distance <= firstDistance)
+            {
+                isShoot = false;
+            }
         }
     }
     private void OnDrawGizmosSelected() 
