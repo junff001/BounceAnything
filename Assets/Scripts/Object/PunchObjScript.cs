@@ -6,6 +6,9 @@ public class PunchObjScript : MonoBehaviour
 {
     [SerializeField]
     private LayerMask whatIsHitable = new LayerMask();
+
+    private GlueableObj glueableObj = null;
+
     [SerializeField]
     private GameObject shootObj = null;
 
@@ -21,9 +24,19 @@ public class PunchObjScript : MonoBehaviour
 
     private float firstDistance = 0f;
 
+    private void Awake()
+    {
+        glueableObj = GetComponent<GlueableObj>();
+    }
     void Start()
     {
         firstDistance = Vector3.Distance(transform.position, shootObj.transform.position);
+
+        glueableObj.OnGlue += () =>
+        {
+            shootObj.GetComponent<Collider>().enabled = false;
+            enabled = false;
+        };
     }
 
     void Update()
@@ -37,7 +50,7 @@ public class PunchObjScript : MonoBehaviour
     }
     private void Shoot()
     {
-        if(CheckPlayer() && !isShoot)
+        if (CheckPlayer() && !isShoot)
         {
             Rigidbody rigid = shootObj.GetComponent<Rigidbody>();
 
@@ -48,17 +61,17 @@ public class PunchObjScript : MonoBehaviour
     }
     private void ShootReset()
     {
-        if(isShoot)
+        if (isShoot)
         {
             float distance = Vector3.Distance(transform.position, shootObj.transform.position);
 
-            if(distance <= firstDistance)
+            if (distance <= firstDistance)
             {
                 isShoot = false;
             }
         }
     }
-    private void OnDrawGizmosSelected() 
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, transform.right * shootRange);

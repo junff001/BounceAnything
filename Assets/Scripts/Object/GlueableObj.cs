@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GlueableObj : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class GlueableObj : MonoBehaviour
     }
     public bool socreUp = false;
 
+    public Action OnGlue;
+
     private void Awake()
     {
         gameManager = GameManager.Instance;
@@ -35,6 +38,10 @@ public class GlueableObj : MonoBehaviour
 
         originPos = transform.position;
         originRotate = transform.rotation;
+
+        OnGlue = () => {
+
+        };
 
         // size = myCol.bounds.extents.x * myCol.bounds.extents.y * myCol.bounds.extents.z;
     }
