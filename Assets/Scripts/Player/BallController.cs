@@ -37,7 +37,6 @@ public class BallController : MonoBehaviour
     private float yDelta;
     private float ColRadius;
     private Vector3 startPos;
-    private Vector3 velocity;
 
     // 캔버스 관련 변수
     private RectTransform canvas;
@@ -67,13 +66,14 @@ public class BallController : MonoBehaviour
 
         canvas = Instantiate(sizeCanvas, startPos + new Vector3(0, canvasHeight, 0), Quaternion.Euler(90, 0, 0));
 
-        velocity = new Vector3(1f, 1f, 1f);
+        
     }
 
     void FixedUpdate()
     {
         BallMove();
-        Debug.Log(string.Format("BallVelocity:{0}", rigid.velocity));
+        //Debug.Log(string.Format("BallVelocity:{0}", rigid.velocity));
+        Debug.Log(string.Format("magnitude:{0}", rigid.velocity.magnitude));
     }
 
     void Update()
@@ -84,21 +84,22 @@ public class BallController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // 부딪힘 이펙트
         Vector3 point;
-        float speedX = Mathf.Abs(rigid.velocity.x);
-        float speedY = Mathf.Abs(rigid.velocity.y);
-        float speedZ = Mathf.Abs(rigid.velocity.z);
         int layerMask = LayerMask.NameToLayer("GROUND");
 
-        if (speedX >= velocity.x || speedY >= velocity.y || speedZ >= velocity.z) {
+        if (rigid.velocity.magnitude > 2.5f) {
             if (collision.gameObject.layer != layerMask) {
                 for (int i = 0; i < collision.contacts.Length; i++) {
                     point = collision.contacts[i].point;
-                    GameObject ps = Instantiate(particle, point, Quaternion.identity);
-                    Destroy(ps, 1f);
+                    GameObject effect = Instantiate(particle, point, Quaternion.identity);
+                    Destroy(effect, 1f);
                 }
             }
         }
+
+        // 바닥에 떨어짐 이펙트
+
     }
 
     private void OnCollisionStay(Collision collision)
