@@ -57,8 +57,10 @@ public class BallController : MonoBehaviour
         gameManager = GameManager.Instance; 
         
         rigid = GetComponent<Rigidbody>();  
+
         playerInput = GetComponent<PlayerInput>();
         playerFirst = GetComponent<PlayerFirstObjScript>();
+
         cam = Camera.main.gameObject.transform;
 
         startPos = transform.position; // 이전 위치

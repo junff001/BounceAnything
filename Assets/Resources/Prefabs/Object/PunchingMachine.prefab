@@ -1977,7 +1977,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   shootObj: {fileID: 9039566328886113004}
-  shootPower: 500
+  shootPower: 100
   shootRange: 5
   radius: 0.5
 --- !u!54 &9039566329522067501

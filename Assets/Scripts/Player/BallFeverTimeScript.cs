@@ -26,6 +26,8 @@ public class BallFeverTimeScript : MonoBehaviour
         }
     }
 
+    [Header("피버 게이지(피버를 사용하기 위해 모아야 하는 에너지의 양)")]
+    [Header("피버 게이지는 점수를 얻으면 증가, 1점당 0.01씩 오른다.")]
     [SerializeField]
     private float feverMax = 5f;
     [Header("공이 피버모드일 때의 스피드")]
@@ -40,6 +42,9 @@ public class BallFeverTimeScript : MonoBehaviour
     [Header("잔상이 소환되는 주기")]
     [SerializeField]
     private float afterImageSpawnDelay = 0.5f;
+    [Header("피버 사용 후 피버 게이지의 양이 늘어나는 비율(ex: 게이지가 10이었는데 피버 발동 한번 하면 11이 됌.)")]
+    [SerializeField]
+    private float feverMaxUpNum = 1.1f;
 
     private float fever = 0f;
     private float plusFever = 0f;
@@ -59,7 +64,7 @@ public class BallFeverTimeScript : MonoBehaviour
             plusFever += size;
         };
     }
-    
+
     void Update()
     {
         SetFever();
@@ -93,6 +98,7 @@ public class BallFeverTimeScript : MonoBehaviour
                 fever = 0f;
 
                 ballController.MoveSpeed = playerSpeedOrigin;
+                feverMax *= feverMaxUpNum; // 피버 게이지 상승
                 isFever = false;
             }
         }
