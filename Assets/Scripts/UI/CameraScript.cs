@@ -59,7 +59,7 @@ public class CameraScript : MonoBehaviour
 
             angleXZ = Mathf.Clamp(angleXZ, minY, maxY);
 
-            transform.position += Quaternion.Euler(angleXZ, angleY, angleXZ) * new Vector3(offset.x, offset.y, -cameraHeight - (playerFirstObjScript.PlayerTotalSize));
+            transform.position += Quaternion.Euler(angleXZ, angleY, angleXZ) * new Vector3(offset.x, offset.y, -cameraHeight - (playerFirstObjScript.MyCol.radius * 5f));
             transform.LookAt(playerTrm.transform);
         }
     }

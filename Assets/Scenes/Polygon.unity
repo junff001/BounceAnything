@@ -62450,7 +62450,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   glueableObjParent: {fileID: 1916320715}
-  targetScore: 3500
+  targetScore: 2000
 --- !u!4 &1776480567
 Transform:
   m_ObjectHideFlags: 0
