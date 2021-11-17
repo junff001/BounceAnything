@@ -40,6 +40,7 @@ public class GlueToPlayerFirstObj : MonoBehaviour
     }
     private float moveTimer = 0f;
     private bool sizeUp = false;
+    private bool glued = false;
 
     private void Awake()
     {
@@ -172,10 +173,13 @@ public class GlueToPlayerFirstObj : MonoBehaviour
         Glue();
 
     }
-    private void  GlueTimeOver()
+    private void GlueTimeOver()
     {
-        transform.position = gameManager.PlayerFirstObjScript.transform.position;
-        Glue();
+        if (!glued)
+        {
+            transform.position = gameManager.PlayerFirstObjScript.transform.position;
+            Glue();
+        }
     }
 
     private void Glue()
@@ -184,6 +188,7 @@ public class GlueToPlayerFirstObj : MonoBehaviour
         gameObject.layer = transform.parent.gameObject.layer;
 
         myCol.isTrigger = true;
+        glued = true;
 
         enabled = false;
     }
