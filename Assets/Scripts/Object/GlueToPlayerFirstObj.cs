@@ -151,7 +151,7 @@ public class GlueToPlayerFirstObj : MonoBehaviour
 
         Debug.Log(other.gameObject.layer);
 
-        Invoke("Glue", 5f);
+        Invoke("GlueTimeOver", 5f);
 
         while (hit.collider == null)
         {
@@ -171,6 +171,11 @@ public class GlueToPlayerFirstObj : MonoBehaviour
 
         Glue();
 
+    }
+    private void  GlueTimeOver()
+    {
+        transform.position = gameManager.PlayerFirstObjScript.transform.position;
+        Glue();
     }
 
     private void Glue()
