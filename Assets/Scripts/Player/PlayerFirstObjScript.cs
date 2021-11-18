@@ -74,7 +74,7 @@ public class PlayerFirstObjScript : MonoBehaviour
         SetPlayerTotalSize();
         SetPlayerColliderRadius();
 
-        gameManager.Score = playerTotalSize * 100f; // 현재점수 갱신
+        gameManager.Score = (playerTotalSize - playerSizeOrigin) * 100f; // 현재점수 갱신
     }
 
     private void OnTriggerEnter(Collider other)
@@ -85,8 +85,8 @@ public class PlayerFirstObjScript : MonoBehaviour
         {
             if (playerTotalSize >= glueableObj.SizeOrigin)
             {
-               //Debug.Log("p" + playerTotalSize);
-               //Debug.Log("t" + glueableObj.SizeOrigin);
+                //Debug.Log("p" + playerTotalSize);
+                //Debug.Log("t" + glueableObj.SizeOrigin);
 
                 glueableObj.gameObject.AddComponent<GlueToPlayerFirstObj>();
 
