@@ -59,7 +59,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.55
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &7226800436474305581
 SphereCollider:
@@ -70,9 +70,9 @@ SphereCollider:
   m_GameObject: {fileID: 2492716001113272907}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.45
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2492716001113272909
 Rigidbody:
@@ -89,7 +89,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 0
 --- !u!114 &2492716001113272896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   moveSpeed: 5
   rotationSpeed: 3
   jumpHeight: 0
-  maxSpeed: 7
+  maxSpeed: 6.5
   particle: {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
   sizeCanvas: {fileID: 2666100779408439002, guid: 3dc415163f33d0a47ad98d809e20599e, type: 3}
   sizeImage: {fileID: 0}

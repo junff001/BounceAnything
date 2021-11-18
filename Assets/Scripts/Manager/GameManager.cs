@@ -272,7 +272,6 @@ public class GameManager : MonoBehaviour
         newCursor_Clicked = newCursors[1];
 
         Cursor.visible = false;
-
     }
     void Update()
     {
