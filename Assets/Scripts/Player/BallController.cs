@@ -67,8 +67,6 @@ public class BallController : MonoBehaviour
         radius = playerFirst.MyCol.radius; // 이전 반지름 길이
 
         canvas = Instantiate(sizeCanvas, startPos + new Vector3(0, canvasHeight, 0), Quaternion.Euler(90, 0, 0));
-
-        
     }
 
     void FixedUpdate()
