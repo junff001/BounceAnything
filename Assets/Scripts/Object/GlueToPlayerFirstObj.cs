@@ -25,7 +25,17 @@ public class GlueToPlayerFirstObj : MonoBehaviour
 
     private float distance
     {
-        get { return Vector3.Distance(GetSuburbPos(), GetTargetPos()); } // 오브젝트 
+        get
+        {
+            if (gameManager.GameStart)
+            {
+                return Vector3.Distance(GetSuburbPos(), GetTargetPos());
+            }
+            else
+            {
+                return 0f;
+            }
+        } // 오브젝트 
     }
 
     private float moveSpeed = 20f;
@@ -63,24 +73,14 @@ public class GlueToPlayerFirstObj : MonoBehaviour
     }
     void Update()
     {
-        // moveTimer += Time.deltaTime;
-        // transform.position = Vector3.Lerp(originPos, GetTargetPos(), moveTimer / moveTime);
-        transform.position = Vector3.MoveTowards(transform.position, GetTargetPos(), moveSpeed * Time.deltaTime);
-        // if (distance >= 0.5f)
-        // {
-        //     moveTimer += Time.deltaTime;
-        //     transform.position = Vector3.Lerp(originPos, GetTargetPos(), moveTimer / moveTime);
-        // }
-        // else
-        // {
-        //     transform.SetParent(gameManager.PlayerFirstObjScript.transform);
-        //     gameObject.layer = transform.parent.gameObject.layer;
-        //     myCol.isTrigger = false;
-
-        //     gameManager.PlayerFirstObjScript.PlayerTotalSize += glueableObj.size;
-
-        //     enabled = false;
-        // }
+        if (gameManager.GameStart)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, GetTargetPos(), moveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            enabled = false;
+        }
     }
 
     private Vector3 GetSuburbPos() //공 밖 오브젝트 RaycastHit으로 체크
@@ -136,44 +136,44 @@ public class GlueToPlayerFirstObj : MonoBehaviour
 
     private IEnumerator CheckHit(Collider other)
     {
-        sizeUp = true;
-
-        Ray ray = new Ray();
-        RaycastHit hit = new RaycastHit();
-
-        ray.origin = transform.position;
-        ray.direction = (other.transform.position - transform.position);
-
-        float distance = Vector3.Distance(transform.position, other.transform.position); // 붙었을 때 PlayerObject의 중심까지의 거리를 잰다.
-
-        Physics.Raycast(ray.origin, ray.direction, out hit, distance, gameManager.WhatisPlayerFirstObj);
-
-        Debug.Log(other.gameObject.layer);
-
-        Invoke("GlueTimeOver", 5f);
-
-        while (hit.collider == null)
+        if (gameManager.GameStart)
         {
-            yield return null;
+            sizeUp = true;
+
+            Ray ray = new Ray();
+            RaycastHit hit = new RaycastHit();
+
+            ray.origin = transform.position;
+            ray.direction = (other.transform.position - transform.position);
+
+            float distance = Vector3.Distance(transform.position, other.transform.position); // 붙었을 때 PlayerObject의 중심까지의 거리를 잰다.
+
+            Physics.Raycast(ray.origin, ray.direction, out hit, distance, gameManager.WhatisPlayerFirstObj);
+
+            Debug.Log(other.gameObject.layer);
+
+            Invoke("GlueTimeOver", 5f);
+
+            while (hit.collider == null)
+            {
+                yield return null;
+            }
+
+            distance = Vector3.Distance(hit.point, other.transform.position);
+            Debug.Log(hit.collider);
+            Debug.Log(hit.point);
+
+            if ((gameManager.PlayerFirstObjScript.MyCol.radius + gameManager.PlayerFirstObjScript.PlusRadius) < distance) // 잰 거리가 이동용으로 쓰이는 SphereCollider의 radius값보다 크면,
+            {
+                gameManager.PlayerFirstObjScript.PlusRadius += distance - gameManager.PlayerFirstObjScript.MyCol.radius; // distance와 SphereCollider의 radius값의 차이만큼 PlusRadius에 값을 더해준다.
+            }                                                                                                            // radius는 PlusRadius의 값만큼 서서히 증가한다.
+
+            Glue();
         }
-
-
-
-        distance = Vector3.Distance(hit.point, other.transform.position);
-        Debug.Log(hit.collider);
-        Debug.Log(hit.point);
-
-        if ((gameManager.PlayerFirstObjScript.MyCol.radius + gameManager.PlayerFirstObjScript.PlusRadius) < distance) // 잰 거리가 이동용으로 쓰이는 SphereCollider의 radius값보다 크면,
-        {
-            gameManager.PlayerFirstObjScript.PlusRadius += distance - gameManager.PlayerFirstObjScript.MyCol.radius; // distance와 SphereCollider의 radius값의 차이만큼 PlusRadius에 값을 더해준다.
-        }                                                                                                            // radius는 PlusRadius의 값만큼 서서히 증가한다.
-
-        Glue();
-
     }
     private void GlueTimeOver()
     {
-        if (!glued)
+        if (!glued && gameManager.GameStart)
         {
             transform.position = gameManager.PlayerFirstObjScript.transform.position;
             Glue();
