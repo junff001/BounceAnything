@@ -21,8 +21,6 @@ public class GlueToPlayerFirstObj : MonoBehaviour
     private GlueableObj glueableObj = null;
     private Collider myCol = null;
 
-
-
     private Vector3 originPos = Vector3.zero;
 
     private float distance
@@ -41,6 +39,7 @@ public class GlueToPlayerFirstObj : MonoBehaviour
     private float moveTimer = 0f;
     private bool sizeUp = false;
     private bool glued = false;
+    public bool Glued { get { return glued; } }
 
     private void Awake()
     {
@@ -64,7 +63,6 @@ public class GlueToPlayerFirstObj : MonoBehaviour
     }
     void Update()
     {
-
         // moveTimer += Time.deltaTime;
         // transform.position = Vector3.Lerp(originPos, GetTargetPos(), moveTimer / moveTime);
         transform.position = Vector3.MoveTowards(transform.position, GetTargetPos(), moveSpeed * Time.deltaTime);
