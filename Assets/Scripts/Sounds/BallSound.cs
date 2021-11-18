@@ -6,12 +6,14 @@ public class BallSound : MonoBehaviour
 {
     private AudioSource audioSource0;
     private AudioSource audioSource1;
+    private Rigidbody rigid;
     private int child = 0;
 
     void Start()
     {
         audioSource0 = transform.GetChild(0).GetComponent<AudioSource>();
         audioSource1 = transform.GetChild(1).GetComponent<AudioSource>();
+        rigid = GetComponent<Rigidbody>();
         child = transform.childCount;
     }
 
@@ -32,8 +34,10 @@ public class BallSound : MonoBehaviour
     {
         int layerMask = LayerMask.NameToLayer("GROUND");
 
-        if (collision.gameObject.layer != layerMask) {
-            audioSource1.Play();
-        }  
+        if (rigid.velocity.magnitude > 2.5f) {
+            if (collision.gameObject.layer != layerMask) {
+                audioSource1.Play();
+            }
+        }
     }
 }
