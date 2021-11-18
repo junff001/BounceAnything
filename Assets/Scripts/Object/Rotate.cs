@@ -6,11 +6,6 @@ public class Rotate : MonoBehaviour
 {
     [SerializeField]
     private float rotatePower = 50;
-    
-    void Start()
-    {
-        
-    }
 
     void Update()
     {

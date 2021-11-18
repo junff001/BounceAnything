@@ -30,7 +30,6 @@ public class AfterImage : MonoBehaviour
     }
     void Update()
     {
-        //transform.localScale = gameManager.CurrentPlayerObj.GetComponent<SphereCollider>().
         SetAlpha();
         DespawnCheck();
     }

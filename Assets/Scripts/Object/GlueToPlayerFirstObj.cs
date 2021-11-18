@@ -150,7 +150,7 @@ public class GlueToPlayerFirstObj : MonoBehaviour
 
             Physics.Raycast(ray.origin, ray.direction, out hit, distance, gameManager.WhatisPlayerFirstObj);
 
-            Debug.Log(other.gameObject.layer);
+            // Debug.Log(other.gameObject.layer);
 
             Invoke("GlueTimeOver", 5f);
 
@@ -160,8 +160,8 @@ public class GlueToPlayerFirstObj : MonoBehaviour
             }
 
             distance = Vector3.Distance(hit.point, other.transform.position);
-            Debug.Log(hit.collider);
-            Debug.Log(hit.point);
+            // Debug.Log(hit.collider);
+            // Debug.Log(hit.point);
 
             if ((gameManager.PlayerFirstObjScript.MyCol.radius + gameManager.PlayerFirstObjScript.PlusRadius) < distance) // 잰 거리가 이동용으로 쓰이는 SphereCollider의 radius값보다 크면,
             {

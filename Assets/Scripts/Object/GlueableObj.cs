@@ -42,8 +42,6 @@ public class GlueableObj : MonoBehaviour
         OnGlue = () => {
 
         };
-
-        // size = myCol.bounds.extents.x * myCol.bounds.extents.y * myCol.bounds.extents.z;
     }
     void Start()
     {

@@ -49,12 +49,14 @@ public static class ScriptHelper
         int result = 0;
         int a = mask;
 
-        while (true) {
+        while (true)
+        {
             a /= 2;
 
             result++;
 
-            if (a == 1) {
+            if (a == 1)
+            {
                 break;
             }
         }
@@ -130,7 +132,7 @@ public class GameManager : MonoBehaviour
     private float totalSec = 0f;
     private bool gameClear = false;
     private float radius;
-    
+
 
     private BallController ballCon;
 
@@ -195,9 +197,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         poolManager = PoolManager.Instance;
- 
-        // 람다로 초기화
-        StartGame = () => 
+
+        StartGame = () =>
         {
             totalSec = 0f;
             totalMin = 0;
@@ -256,8 +257,10 @@ public class GameManager : MonoBehaviour
             StartPanel.SetActive(true);
         };
 
-        RespwnPlayer = () => {
-            if (radius < pFirst.MyCol.radius) {
+        RespwnPlayer = () =>
+        {
+            if (radius < pFirst.MyCol.radius)
+            {
                 respawnTrm.position += new Vector3(0, respwnHeight, 0);
                 radius = pFirst.MyCol.radius;
             }
@@ -275,8 +278,7 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
-               
-        // if(Input.GetKeyUp)
+
         if (gameStart)
         {
             totalSec += Time.deltaTime;
@@ -299,11 +301,11 @@ public class GameManager : MonoBehaviour
 
         if (!gameStart)
         {
-            if(!cursorImg.gameObject.activeSelf)
+            if (!cursorImg.gameObject.activeSelf)
             {
                 cursorImg.gameObject.SetActive(true);
             }
-            
+
             if (Input.GetMouseButton(0))
             {
                 cursorImg.sprite = newCursor_Clicked;
@@ -324,18 +326,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void aa()
-    {
-        if (0 == 1) {
-            
-        }
-    
-    }
-
-    private void F()
-    {
-    }
-	public void SpawnGetScoreText(float score)
+    public void SpawnGetScoreText(float score)
     {
         if (poolManager.TextObjQueue.Count > 0)
         {

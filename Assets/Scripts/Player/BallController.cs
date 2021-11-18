@@ -162,20 +162,5 @@ public class BallController : MonoBehaviour
 
         image.transform.DOScale(scale, 0.4f);
     }
-
-    private void SizeMark()
-    {
-        //sizeText.text = (playerFirst.MyCol.radius * 2).ToString("F2") + "CM"; // 지름 계산
-    }
-
-    private void MarkFollow()
-    {
-        //Vector3 direction = sizeNumCanvas.position - Camera.main.transform.position;
-        //sizeNumCanvas.rotation = Quaternion.LookRotation(direction);
-        //Vector3 position = Camera.main.ScreenToWorldPoint(ballObjTrm.position);
-        //sizeNumCanvas.position = position + new Vector3(50, 1, 0);
-        //sizeNumCanvas.Rotate(Camera.main.)
-        //sizeNumCanvas.position = Camera.main.WorldToScreenPoint(ballObjTrm.position + new Vector3(1, 1, 0));
-    }
 }
 
