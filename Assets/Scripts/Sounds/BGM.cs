@@ -11,11 +11,6 @@ public class BGM : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    void Update()
-    {
-        
-    }
-
     private void OnStartButton()
     {
         audioSource.Play();

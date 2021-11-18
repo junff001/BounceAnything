@@ -22,7 +22,7 @@ public class BallSound : MonoBehaviour
         Attach();
     }
 
-    private void Attach()
+    private void Attach() // 부착 효과음
     {
         if (child < transform.childCount) {
             audioSource0.Play();
@@ -30,7 +30,7 @@ public class BallSound : MonoBehaviour
         child = transform.childCount;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision) // 충돌 효과음
     {
         int layerMask = LayerMask.NameToLayer("GROUND");
 

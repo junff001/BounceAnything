@@ -73,8 +73,6 @@ public class BallController : MonoBehaviour
     void FixedUpdate()
     {
         BallMove();
-        //Debug.Log(string.Format("BallVelocity:{0}", rigid.velocity));
-        Debug.Log(string.Format("magnitude:{0}", rigid.velocity.magnitude));
     }
 
     void Update()
@@ -98,9 +96,6 @@ public class BallController : MonoBehaviour
                 }
             }
         }
-
-        // 바닥에 떨어짐 이펙트
-
     }
 
     private void OnCollisionStay(Collision collision)

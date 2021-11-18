@@ -133,7 +133,6 @@ public class GameManager : MonoBehaviour
     private bool gameClear = false;
     private float radius;
 
-
     private BallController ballCon;
 
     private static GameManager instance = null;
