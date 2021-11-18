@@ -178,7 +178,7 @@ public class GameManager : MonoBehaviour
         set
         {
             score = value;
-            scoreText.text = "Score: " + string.Format("{0:0.##}", score);
+            scoreText.text = "Score: " + string.Format("{0:0.##}", score) + "/" + TargetScore;
         }
     }
     private bool gameStart = false;
@@ -377,5 +377,6 @@ public class GameManager : MonoBehaviour
         RestartGame();
 
         Destroy(currentPlayerObj);
+        Destroy(currentPlayerObj.GetComponent<BallController>().Canvas);
     }
 }

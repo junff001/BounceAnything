@@ -39,8 +39,9 @@ public class BallController : MonoBehaviour
     private Vector3 startPos;
 
     // 캔버스 관련 변수
-    private RectTransform canvas;
-    public RectTransform sizeCanvas;
+    private GameObject canvas;
+    public GameObject Canvas { get { return canvas;} }
+    public GameObject sizeCanvas;
     public Image sizeImage;
     public Text sizeText;
     [Header("사이즈 캔버스 커지는 정도")]
@@ -135,23 +136,23 @@ public class BallController : MonoBehaviour
         }
     }
 
-    private void CanvasFollow(RectTransform canvas) // 사이즈 이미지 함수
+    private void CanvasFollow(GameObject canvas) // 사이즈 이미지 함수
     {
         Vector3 delta = transform.position - startPos;  // 현재 공의 위치 - 이전 공의 위치 (두 점 사이의 거리) 
         float colDelta = playerFirst.MyCol.radius - radius;
 
-        Vector3 pos = canvas.position;
+        Vector3 pos = canvas.transform.position;
         pos.x += delta.x; 
         pos.z += delta.z; 
         pos.y += delta.y - colDelta; // 사잇값 - 컬라이더 커진 값
 
-        canvas.position = pos;
+        canvas.transform.position = pos;
 
         startPos = transform.position; // 반복 
         radius = playerFirst.MyCol.radius; // 반복
     }
 
-    private void CanvasSizeUp(RectTransform image)
+    private void CanvasSizeUp(GameObject image)
     {
         Vector3 scale = image.transform.localScale;
         float radius = playerFirst.MyCol.radius + size;

@@ -253,7 +253,7 @@ MonoBehaviour:
   jumpHeight: 0
   maxSpeed: 6.5
   particle: {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
-  sizeCanvas: {fileID: 2666100779408439002, guid: 3dc415163f33d0a47ad98d809e20599e, type: 3}
+  sizeCanvas: {fileID: 2666100779408439003, guid: 3dc415163f33d0a47ad98d809e20599e, type: 3}
   sizeImage: {fileID: 0}
   sizeText: {fileID: 0}
   size: 0.2
