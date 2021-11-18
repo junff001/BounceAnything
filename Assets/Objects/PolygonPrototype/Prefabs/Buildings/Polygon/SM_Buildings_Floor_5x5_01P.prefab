@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33356615702722178}
   - component: {fileID: 23129493508227832}
   - component: {fileID: 64184744005576314}
+  - component: {fileID: 2598784032270003728}
   m_Layer: 6
   m_Name: SM_Buildings_Floor_5x5_01P
   m_TagString: Ground
@@ -96,3 +97,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: dd9a02aea57eba148b3b2a1404bf194f, type: 3}
+--- !u!114 &2598784032270003728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000599048822866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb140eeb615b06744abb1ac40267c304, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openScore: 1500
+  speed: 5
+  targetPosition: {x: 0, y: -10, z: 0}
